@@ -1,0 +1,99 @@
+// Water puzzle prototype
+//this text based version is fully playable but doesn't look great
+//logic should all be done
+// needs to be adapted into something that can interact with the GUI
+// I imagine that instead of inputting a letter for input there would be 7 buttons: 3 for the small container, 3 for the large container and one to exit
+
+import java.util.Scanner;
+
+public class Container {
+    public final int size;
+    public int water = 0;
+
+    public Container(int size) {
+        this.size = size;
+    }
+
+    public void display(){
+        System.out.println("The container that can hold " + size+ " units of water is now holding " + water + " units of water ");
+    }
+    public int capacity(){
+        return size - water;
+    }
+    public void fill (){
+        this.water = this.size;
+        System.out.println("The container that can hold " + size+ " units of water is now full");
+    }
+    public  void empty (){
+        this.water = 0;
+        System.out.println("The container that can hold " + size+ " units of water is now empty");
+    }
+
+    public void transfer(Container destination){
+        if (this.water <= destination.capacity()){
+            destination.water+= this.water;
+            this.empty();
+            destination.display();
+        } else {
+            this.water -= destination.capacity();
+            destination.fill();
+            this.display();
+        }
+
+    }
+
+
+
+
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        Container three = new Container(3);
+        Container five = new Container(5);
+        Container curcontainer = null;
+        Container othercontainer = null;
+        System.out.println("There are two containers that hold water, a large one with a maximum capacity of 5 units and a small one with a capacity of 3 units. Both are currently empty.");
+        System.out.println("Your goal is to get exactly 4 units of water in the large container.");
+
+        while (five.water!= 4 ){
+            curcontainer = null;
+
+
+
+            while (curcontainer == null) {
+
+                System.out.println("Type s to interact with the small container of size three, type l to interact with the large container of size five ");
+                int contsize = input.next().charAt(0);
+
+                if (contsize == 's') {
+                    curcontainer = three;
+                    othercontainer = five;
+                    curcontainer.display();
+                } else if (contsize == 'l') {
+                    curcontainer =five;
+                    othercontainer =three;
+                    curcontainer.display();
+                }
+                else{
+                    System.out.println("Invalid input, retry");
+                }
+
+            }
+            System.out.println("Type e to empty container, f to fill container, or t the transfer the contents to the other container");
+            char response = input.next().charAt(0);
+            if (response == 'e'){
+                curcontainer.empty();
+            }
+            else if(response == 'f'){
+                curcontainer.fill();
+            }
+            else if (response == 't'){
+                curcontainer.transfer(othercontainer);
+            }
+        }
+        System.out.println("You did it!");
+        }
+    }
+
