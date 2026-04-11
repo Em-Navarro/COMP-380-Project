@@ -1,0 +1,91 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class C2 extends JPanel implements ActionListener, RoomBuilder {
+    JLayeredPane layeredPane;
+    RoomBuilder[] links;
+
+    JLabel label;
+    JButton upButton, downButton, rightButton;
+
+    public C2(JLayeredPane x) {
+        setBounds(0,0,1300,1000);
+        setLayout(null);
+        setVisible(false);
+        layeredPane = x;
+    }
+
+    public void create() {
+        ImageIcon roomImage = new ImageIcon("Background Images/C2.png");
+        Image img = roomImage.getImage();
+        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        roomImage = new ImageIcon(scaledImg);
+
+        JLabel background = new JLabel(roomImage);
+        background.setBounds(0, 0, 1300, 1000);
+        add(background);
+
+        label = new JLabel("C2");
+        label.setBounds(500,300,300,100);
+        label.setFont(new Font("MV Boli",Font.PLAIN,70));
+
+        upButton = new JButton("↑");
+        upButton.setBounds(600,30,60,60);
+        upButton.setFont(new Font("Arial", Font.BOLD, 20));
+
+
+        downButton = new JButton("↓");
+        downButton.setBounds(600,500,60,60);
+        downButton.setFont(new Font("Arial", Font.BOLD, 20));
+
+
+        rightButton = new JButton("→");
+        rightButton.setBounds(850,250,60,60);
+        rightButton.setFont(new Font("Arial", Font.BOLD, 20));
+
+
+        upButton.addActionListener(this);
+        downButton.addActionListener(this);
+        rightButton.addActionListener(this);
+
+        add(label);
+        add(upButton);
+        add(downButton);
+        add(rightButton);
+        // force background behind everything
+        setComponentZOrder(background, getComponentCount() - 1);
+    }
+
+    public void showRoom(){ setVisible(true); }
+    public void hideRoom(){ setVisible(false); }
+
+    public int getIndex(){ return -1; }
+
+    public void moveUp() {
+        if(links[0] != null)
+            Main.switchRooms(layeredPane, links[0], this);
+    }
+
+    public void moveDown() {
+        if(links[1] != null)
+            Main.switchRooms(layeredPane, links[1], this);
+    }
+
+    public void moveRight() {
+        if(links[3] != null)
+            Main.switchRooms(layeredPane, links[3], this);
+    }
+
+    public void moveLeft() {}
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == upButton) moveUp();
+        if(e.getSource() == downButton) moveDown();
+        if(e.getSource() == rightButton) moveRight();
+    }
+
+    public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
+        links = new RoomBuilder[]{up, down, left, right};
+    }
+}
