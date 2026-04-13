@@ -12,15 +12,17 @@ import java.awt.Image;
 public class A3 extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton leftButton;
-    A3(JLayeredPane x){
+    A3(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
         setOpaque(true);
         setVisible(false);
         setLayout(null);
         layeredPane = x;
+        player = y;
     }
      public void create() {
          ImageIcon roomImage = new ImageIcon("Background Images/A3.png");
@@ -68,12 +70,17 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder{
 
     public void moveLeft() {
         Main.switchRooms(layeredPane, links[2], this);
+        addPlayerComponents((JPanel)links[2]);
     }
 
     public void moveRight() {
     }
 
     public void moveDown() {
+    }
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
     }
 
     public void actionPerformed(ActionEvent e) {

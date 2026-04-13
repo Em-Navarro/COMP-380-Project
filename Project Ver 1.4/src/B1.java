@@ -5,15 +5,17 @@ import java.awt.event.*;
 public class B1 extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton upButton, rightButton;
 
-    public B1(JLayeredPane x) {
+    public B1(JLayeredPane x, Player y) {
         setBounds(0,0,1300,1000);
         setLayout(null);
         setVisible(false);
         layeredPane = x;
+        player = y;
     }
 
     public void create() {
@@ -55,8 +57,9 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     public int getIndex(){ return -1; }
 
     public void moveUp() {
-        if(links[0] != null)
+        if(links[0] != null){
             Main.switchRooms(layeredPane, links[0], this);
+        }
     }
 
     public void moveDown() {}
@@ -64,8 +67,14 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     public void moveLeft() {}
 
     public void moveRight() {
-        if(links[3] != null)
+        if(links[3] != null){
             Main.switchRooms(layeredPane, links[3], this);
+            addPlayerComponents((JPanel)links[3]);
+        }
+    }
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
     }
 
     public void actionPerformed(ActionEvent e) {

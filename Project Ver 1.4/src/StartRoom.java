@@ -12,15 +12,17 @@ import java.awt.Image;
 public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton upButton;
-    StartRoom(JLayeredPane x){
+    StartRoom(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
         setOpaque(true);
         setVisible(false);
         setLayout(null);
         layeredPane = x;
+        player = y;
     }
 
     public void create() {
@@ -48,6 +50,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
         add(label);
         add(upButton);
+        add(player.getInventory());
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }
@@ -66,6 +69,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        addPlayerComponents((JPanel)links[0]);
     }
 
     public void moveLeft() {
@@ -75,6 +79,10 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void moveDown() {
+    }
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
     }
 
     public void actionPerformed(ActionEvent e) {

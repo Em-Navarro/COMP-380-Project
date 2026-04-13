@@ -12,17 +12,19 @@ import java.awt.Image;
 public class A2 extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton upButton; //deactivate until puzzle solved
     JButton leftButton;
     JButton rightButton;
-    A2(JLayeredPane x){
+    A2(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
         setOpaque(true);
         setVisible(false);
         setLayout(null);
         layeredPane = x;
+        player = y;
     }
      public void create() {
          ImageIcon roomImage = new ImageIcon("Background Images/A2_Closed.png");
@@ -84,17 +86,24 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        addPlayerComponents((JPanel)links[0]);
     }
 
     public void moveLeft() {
         Main.switchRooms(layeredPane, links[2], this);
+        addPlayerComponents((JPanel)links[2]);
     }
 
     public void moveRight() {
         Main.switchRooms(layeredPane, links[3], this);
+        addPlayerComponents((JPanel)links[3]);
     }
 
     public void moveDown() {
+    }
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
     }
 
     public void actionPerformed(ActionEvent e) {

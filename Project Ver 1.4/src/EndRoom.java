@@ -13,7 +13,7 @@ public class EndRoom extends JPanel implements RoomBuilder {
 
     public void create() {
         JLabel label = new JLabel("YOU WIN!");
-        label.setBounds(400,300,500,200);
+        label.setBounds(400,300,700,200);
         label.setFont(new Font("MV Boli",Font.BOLD,100));
         add(label);
     }
