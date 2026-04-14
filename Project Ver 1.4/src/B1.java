@@ -79,6 +79,13 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
             Main.switchRooms(layeredPane, links[2], this);
             addPlayerComponents((JPanel)links[2]);
          }
+=======
+    public void moveLeft() {
+    if(links[2] != null)
+            Main.switchRooms(layeredPane, links[2], this);
+            addPlayerComponents((JPanel)links[2]);
+            }
+>>>>>>> Stashed changes
 
     public void moveRight() {
         if(links[3] != null){

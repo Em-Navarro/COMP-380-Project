@@ -67,6 +67,9 @@ public class Main {
         layeredPane.add(waterPuzzle, Integer.valueOf(0));
 <<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
         layeredPane.add(c2, Integer.valueOf(0));
         layeredPane.add(c3, Integer.valueOf(0));
 
