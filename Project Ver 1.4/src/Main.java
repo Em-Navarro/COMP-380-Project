@@ -76,6 +76,9 @@ public class Main {
         // Start
         startScreen.getLinks(startRoom, null, null, null);
 
+        // StartRoom → goes to A1
+        startRoom.getLinks(a1, null, null, null);
+
         // A row
         a1.getLinks(null, startRoom, null, a2);
         a2.getLinks(b2, null, a1, a3);
@@ -90,9 +93,6 @@ public class Main {
         // C row
         c2.getLinks(endRoom, b2, null, c3);
         c3.getLinks(null, null, c2, null);
-
-        // StartRoom → goes to A1
-        startRoom.getLinks(a1, null, null, null);
 
         //INITIAL VISIBILITY
         startScreen.showRoom();

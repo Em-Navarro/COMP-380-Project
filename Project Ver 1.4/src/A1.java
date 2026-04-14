@@ -42,7 +42,6 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
         downButton.setFont(new Font("Arial", Font.BOLD, 20));
 
-
         label.setBounds(300,300,1000,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
