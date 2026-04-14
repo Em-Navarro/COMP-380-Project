@@ -8,7 +8,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     Player player;
 
     JLabel label;
-    JButton upButton, rightButton;
+    JButton upButton,leftButton, rightButton;
 
     public B1(JLayeredPane x, Player y) {
         setBounds(0,0,1300,1000);
@@ -37,6 +37,10 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         upButton.addActionListener(this);
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
 
+        leftButton = new JButton("←");
+        leftButton.setBounds(350,250,60,60);
+        leftButton.addActionListener(this);
+        leftButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         rightButton = new JButton("→");
         rightButton.setBounds(850,250,60,60);
@@ -46,6 +50,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
 
         add(label);
         add(upButton);
+        add(leftButton);
         add(rightButton);
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
@@ -64,7 +69,11 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
 
     public void moveDown() {}
 
-    public void moveLeft() {}
+    public void moveLeft() { 
+        if(links[2] != null)
+            Main.switchRooms(layeredPane, links[2], this);
+            addPlayerComponents((JPanel)links[2]);
+         }
 
     public void moveRight() {
         if(links[3] != null){
