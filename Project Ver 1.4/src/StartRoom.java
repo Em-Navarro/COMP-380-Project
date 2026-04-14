@@ -39,8 +39,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         upButton = new JButton("↑");
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
 
-
-
         label.setBounds(300,300,1000,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
