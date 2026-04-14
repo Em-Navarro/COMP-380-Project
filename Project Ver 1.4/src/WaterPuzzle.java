@@ -41,17 +41,19 @@ import java.awt.event.*;
 public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label, waterLargeLabel,waterSmallLabel, capacityLargeLabel, capacitySmallLabel;
     JButton rightButton, fillLargeButton, emptyLargeButton, transferLargeButton, fillSmallButton, emptySmallButton, transferSmallButton;
     Container smallContainer = new Container(3);
     Container largeContainer = new Container(5);
     
-    public WaterPuzzle(JLayeredPane x) {
+    public WaterPuzzle(JLayeredPane x, Player y) {
         setBounds(0,0,1300,1000);
         setLayout(null);
         setVisible(false);
         layeredPane = x;
+        player =y;
     }
     
     public void create(){
@@ -174,6 +176,11 @@ public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
     public void moveRight() {
         if(links[3] != null)
             Main.switchRooms(layeredPane, links[3], this);
+            addPlayerComponents((JPanel)links[3]);
+    }
+    
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
     }
     
     // this will get replaced with simple animation
