@@ -19,7 +19,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("Background Images/B1_Closed.png");
+        ImageIcon roomImage = new ImageIcon("../Background Images/B1_Closed.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);

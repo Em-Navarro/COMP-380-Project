@@ -25,7 +25,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder{
         player = y;
     }
      public void create() {
-         ImageIcon roomImage = new ImageIcon("Background Images/A3.png");
+         ImageIcon roomImage = new ImageIcon("../Background Images/A3.png");
          Image img = roomImage.getImage();
          Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
          roomImage = new ImageIcon(scaledImg);
