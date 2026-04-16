@@ -49,6 +49,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         add(label);
         add(upButton);
         add(player.getInventory());
+        add(player.getTextBox());
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }
@@ -81,8 +82,9 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
+        //panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
-
+        //panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {
