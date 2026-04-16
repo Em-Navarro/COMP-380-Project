@@ -12,9 +12,10 @@ public class Main {
         frame = new JFrame("Game");
         frame.setSize(1300, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        frame.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
 
         layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(1300,1000));
         layeredPane.setBounds(0, 0, 1300, 1000);
 
         //Creating Rooms here
@@ -52,7 +53,6 @@ public class Main {
         c3.create();
 
         endRoom.create();
-
 
         layeredPane.add(startScreen, Integer.valueOf(0));
         layeredPane.add(startRoom, Integer.valueOf(0));
