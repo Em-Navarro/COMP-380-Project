@@ -19,7 +19,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("../Background Images/B3.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/B3.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -62,6 +62,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
+        panel.setComponentZOrder(player.getInventory(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {
