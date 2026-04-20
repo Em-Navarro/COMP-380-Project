@@ -32,6 +32,7 @@ public class Player{
 
     static void changeCurrentLocation(String loc){
         currLocation = loc;
+        System.out.println(currLocation);
     }
 
     static String getCurrentLocation(){

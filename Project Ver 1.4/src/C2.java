@@ -75,6 +75,7 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void moveDown() {
         if(links[1] != null){
             Main.switchRooms(layeredPane, links[1], this);
+            Player.changeCurrentLocation(links[1].getRoom());
             addPlayerComponents((JPanel)links[1]);
         }
     }
@@ -82,6 +83,7 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void moveRight() {
         if(links[3] != null){
             Main.switchRooms(layeredPane, links[3], this);
+            Player.changeCurrentLocation(links[3].getRoom());
             addPlayerComponents((JPanel)links[3]);
         }
     }

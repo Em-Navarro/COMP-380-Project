@@ -86,16 +86,19 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        Player.changeCurrentLocation(links[0].getRoom());
         addPlayerComponents((JPanel)links[0]);
     }
 
     public void moveLeft() {
         Main.switchRooms(layeredPane, links[2], this);
+        Player.changeCurrentLocation(links[2].getRoom());
         addPlayerComponents((JPanel)links[2]);
     }
 
     public void moveRight() {
         Main.switchRooms(layeredPane, links[3], this);
+        Player.changeCurrentLocation(links[3].getRoom());
         addPlayerComponents((JPanel)links[3]);
     }
 

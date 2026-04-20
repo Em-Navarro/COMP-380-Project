@@ -68,6 +68,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        Player.changeCurrentLocation(links[0].getRoom());
         addPlayerComponents((JPanel)links[0]);
     }
 

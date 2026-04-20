@@ -80,11 +80,13 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
 
     public void moveRight() {
         Main.switchRooms(layeredPane, links[3], this);
+        Player.changeCurrentLocation(links[3].getRoom());
         addPlayerComponents((JPanel)links[3]);
     }
 
     public void moveDown() {
         Main.switchRooms(layeredPane, links[1], this);
+        Player.changeCurrentLocation(links[1].getRoom());
         addPlayerComponents((JPanel)links[1]);
     }
 

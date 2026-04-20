@@ -79,6 +79,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
 
     public void moveLeft() {
         Main.switchRooms(layeredPane, links[2], this);
+        Player.changeCurrentLocation(links[2].getRoom());
         addPlayerComponents((JPanel)links[2]);
     }
 

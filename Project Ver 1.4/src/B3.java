@@ -54,6 +54,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
     public void moveLeft() {
         if(links[2] != null){
             Main.switchRooms(layeredPane, links[2], this);
+            Player.changeCurrentLocation(links[2].getRoom());
             addPlayerComponents((JPanel)links[2]);
         }
     }
