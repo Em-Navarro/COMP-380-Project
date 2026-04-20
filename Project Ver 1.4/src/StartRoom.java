@@ -62,8 +62,8 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -2;
+    public String getRoom() {
+        return "SR";
     }
 
     public void moveUp() {

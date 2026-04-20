@@ -13,8 +13,8 @@ public class Player{
         //map.create(); //would also have a getMap method to get the button/panel 
         textBox = new TextBox();
         textBox.create();
-        currLocation = "SS";
-        //SS = start screen, ES = End Screen, rest are just A1, A2, etc
+        currLocation = "SR";
+        //SR = start room, ER = End room, rest are just A1, A2, etc
     }
 
     JPanel getInventory(){

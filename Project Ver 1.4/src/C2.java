@@ -62,7 +62,9 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public int getIndex(){ return -1; }
+    public String getRoom() {
+        return "C2";
+     }
 
     public void moveUp() {
         if(links[0] != null){

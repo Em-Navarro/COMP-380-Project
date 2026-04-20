@@ -70,9 +70,9 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -5;
-    }
+    public String getRoom() {
+        return "A3";
+     }
 
     public void moveUp() {
     }

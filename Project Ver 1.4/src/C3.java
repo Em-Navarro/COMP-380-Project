@@ -47,7 +47,9 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public int getIndex(){ return -1; }
+    public String getRoom() {
+        return "C3";
+     }
 
     public void moveLeft() {
         if(links[2] != null){

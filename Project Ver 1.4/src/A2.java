@@ -80,9 +80,9 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -4;
-    }
+    public String getRoom() {
+        return "A2";
+     }
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);

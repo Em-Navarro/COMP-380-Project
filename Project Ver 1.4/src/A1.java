@@ -68,9 +68,9 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -3;
-    }
+    public String getRoom() {
+        return "A1";
+     }
 
     public void moveUp() {
     }
