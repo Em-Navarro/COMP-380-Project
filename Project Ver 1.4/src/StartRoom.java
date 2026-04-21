@@ -26,7 +26,8 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("./Background Images/Test_Start.png");
+        ImageIcon roomImage = new ImageIcon("Project Ver 1.4\\src\\Background Images\\Test_Start.png");
+        //Project Ver 1.4\src\Background Images\Test_Start.png
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);

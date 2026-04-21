@@ -12,7 +12,7 @@ public class TextBox extends JPanel{
     JLabel label;
 
     TextBox(){
-        setBounds(100,550,925,150);
+        setBounds(200,570,925,150);
         setBackground(panelColor);
         setBorder(BorderFactory.createLineBorder(borderColor,10));
         setLayout(new FlowLayout(FlowLayout.LEFT));
