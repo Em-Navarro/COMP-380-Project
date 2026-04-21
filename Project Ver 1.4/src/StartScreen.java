@@ -29,7 +29,7 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void create(){
-        title = new JLabel("We Need A Title");
+        title = new JLabel("A Knight's Story");
         startButton = new JButton("Start");
         optionButton = new JButton("Options");
 

@@ -14,7 +14,7 @@ public class Player {
         inventory.create();
         //map = new Map();
         //map.create(); //would also have a getMap method to get the button/panel 
-        textBox.setBounds(100,500,925,200);
+        textBox.setBounds(200,600,925,200);
         textBox.setBackground(panelColor);
         textBox.setBorder(BorderFactory.createLineBorder(borderColor,10));
     }
