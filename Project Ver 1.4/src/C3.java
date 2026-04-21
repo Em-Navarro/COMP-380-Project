@@ -47,11 +47,14 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public int getIndex(){ return -1; }
+    public String getRoom() {
+        return "C3";
+     }
 
     public void moveLeft() {
         if(links[2] != null){
             Main.switchRooms(layeredPane, links[2], this);
+            Player.changeCurrentLocation(links[2].getRoom());
             addPlayerComponents((JPanel)links[2]);
         }
     }
@@ -62,7 +65,9 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder {
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
+        panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {

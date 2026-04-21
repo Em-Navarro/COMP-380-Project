@@ -21,7 +21,9 @@ public class EndRoom extends JPanel implements RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public int getIndex(){ return -1; }
+    public String getRoom() {
+        return "ER";
+     }
 
     public void moveUp(){}
     public void moveDown(){}

@@ -62,7 +62,9 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public int getIndex(){ return -1; }
+    public String getRoom() {
+        return "C2";
+     }
 
     public void moveUp() {
         if(links[0] != null){
@@ -73,6 +75,7 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void moveDown() {
         if(links[1] != null){
             Main.switchRooms(layeredPane, links[1], this);
+            Player.changeCurrentLocation(links[1].getRoom());
             addPlayerComponents((JPanel)links[1]);
         }
     }
@@ -80,6 +83,7 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void moveRight() {
         if(links[3] != null){
             Main.switchRooms(layeredPane, links[3], this);
+            Player.changeCurrentLocation(links[3].getRoom());
             addPlayerComponents((JPanel)links[3]);
         }
     }
@@ -88,7 +92,9 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
+        panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {

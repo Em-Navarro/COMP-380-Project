@@ -1,4 +1,6 @@
 import javax.swing.JPanel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import java.awt.Font;
@@ -9,12 +11,13 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
-public class A3 extends JPanel implements ActionListener, RoomBuilder{
+public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseListener{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
 
     JLabel label;
+    JLabel key;
     JButton leftButton;
     A3(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
@@ -25,29 +28,35 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder{
         player = y;
     }
      public void create() {
-         ImageIcon roomImage = new ImageIcon("./Background Images/A3.png");
-         Image img = roomImage.getImage();
-         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
-         roomImage = new ImageIcon(scaledImg);
+        ImageIcon roomImage = new ImageIcon("./Background Images/A3.png");
+        Image img = roomImage.getImage();
+        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        roomImage = new ImageIcon(scaledImg);
 
-         JLabel background = new JLabel(roomImage);
-         background.setBounds(0, 0, 1300, 1000);
-         add(background);
+        JLabel background = new JLabel(roomImage);
+        background.setBounds(0, 0, 1300, 1000);
 
         label = new JLabel("A3");
-        leftButton = new JButton("←");
-        leftButton.setFont(new Font("Arial", Font.BOLD, 20));
-
-
-         label.setBounds(300,300,1000,100);
+        label.setBounds(300,300,1000,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
+        ImageIcon keyIcon = new ImageIcon("./Background Images/Item_Key.png");
+        key = new JLabel();
+        key.setIcon(keyIcon);
+        key.setBounds(100,100,500,500);
+        key.setVisible(true);
+        key.addMouseListener(this);
+
+        leftButton = new JButton("←");
+        leftButton.setFont(new Font("Arial", Font.BOLD, 20));
         leftButton.setBounds(350,250,60,60);
         leftButton.setFocusable(false);
         leftButton.addActionListener(this);
 
         add(label);
+        add(key);
         add(leftButton);
+        add(background);
          // force background behind everything
          setComponentZOrder(background, getComponentCount() - 1);
 
@@ -61,15 +70,16 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -5;
-    }
+    public String getRoom() {
+        return "A3";
+     }
 
     public void moveUp() {
     }
 
     public void moveLeft() {
         Main.switchRooms(layeredPane, links[2], this);
+        Player.changeCurrentLocation(links[2].getRoom());
         addPlayerComponents((JPanel)links[2]);
     }
 
@@ -81,7 +91,9 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder{
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
+        panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -89,6 +101,31 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder{
             moveLeft();
         }
     }
+
+    @Override
+   public void mouseClicked(MouseEvent e) {
+    //pressed and released
+    Inventory.getItemZero();
+    remove(key);
+    revalidate();
+    repaint();
+   }
+   @Override
+   public void mousePressed(MouseEvent e) {
+    //only the pressing down
+   }
+   @Override
+   public void mouseReleased(MouseEvent e) {
+    //only the release
+   }
+   @Override
+   public void mouseEntered(MouseEvent e) {
+    //when mouse goes inside the object with listener
+   }
+   @Override
+   public void mouseExited(MouseEvent e) {
+    //when mouse leaves the object with listener
+   }  
 
     @Override
      public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
