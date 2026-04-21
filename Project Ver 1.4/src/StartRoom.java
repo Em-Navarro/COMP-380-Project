@@ -62,12 +62,13 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -2;
+    public String getRoom() {
+        return "SR";
     }
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        Player.changeCurrentLocation(links[0].getRoom());
         addPlayerComponents((JPanel)links[0]);
     }
 
@@ -82,9 +83,9 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
-        //panel.add(player.getTextBox());
+        panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
-        //panel.setComponentZOrder(player.getTextBox(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {

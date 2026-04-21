@@ -2,7 +2,7 @@ public interface RoomBuilder {
     public void create(); //initilize/add all components to panel
     public void showRoom(); //put setVisible(true) to all components
     public void hideRoom(); // put setVisible(false) to all components
-    public int getIndex(); //put index in which the frame resides in the backscenes
+    public String getRoom(); //return string with room, so player can track where they are
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right); 
     //^ put references to each room for movement, initialized in main
     /*

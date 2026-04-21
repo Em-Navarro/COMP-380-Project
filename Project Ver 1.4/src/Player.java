@@ -1,22 +1,20 @@
-import java.awt.Color;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class Player {
-    Inventory inventory;
+public class Player{
+    static Inventory inventory;
     //Map map;
-    JPanel textBox = new JPanel();
-    Color panelColor = Color.decode("#18230F");
-    Color borderColor = Color.decode("#27391C");
+    static TextBox textBox;
+    static String currLocation; //change with
     
     Player(){
         inventory = new Inventory();
         inventory.create();
         //map = new Map();
         //map.create(); //would also have a getMap method to get the button/panel 
-        textBox.setBounds(200,600,925,200);
-        textBox.setBackground(panelColor);
-        textBox.setBorder(BorderFactory.createLineBorder(borderColor,10));
+        textBox = new TextBox();
+        textBox.create();
+        currLocation = "SR";
+        //SR = start room, ER = End room, rest are just A1, A2, etc
     }
 
     JPanel getInventory(){
@@ -30,6 +28,15 @@ public class Player {
 
     JPanel getTextBox(){
         return textBox;
+    }
+
+    static void changeCurrentLocation(String loc){
+        currLocation = loc;
+        System.out.println(currLocation);
+    }
+
+    static String getCurrentLocation(){
+        return currLocation;
     }
 
 }
