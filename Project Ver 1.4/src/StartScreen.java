@@ -71,8 +71,8 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         return;
     }
 
-     public String getRoom() {
-        return null;
+     public int getIndex() {
+        return -2;
      }
 
     @Override

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class Inventory extends JPanel implements ActionListener{
-    static JButton[] slots;
+    JButton[] slots;
     Color panelColor = Color.decode("#18230F");
     Color borderColor = Color.decode("#27391C");
     Color buttonColor = Color.decode("#1F7D53");
@@ -42,43 +42,53 @@ public class Inventory extends JPanel implements ActionListener{
             button.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
             add(button);
         }
+
+        /*
+        slots[0].setFocusable(false);
+        slots[1].setFocusable(false);
+        slots[2].setFocusable(false);
+        slots[3].setFocusable(false);
+
+        slots[0].setEnabled(false);
+        slots[1].setEnabled(false);
+        slots[2].setEnabled(false);
+        slots[3].setEnabled(false);
+
+        slots[0].setBackground(buttonColor);
+        slots[1].setBackground(buttonColor);
+        slots[2].setBackground(buttonColor);
+        slots[3].setBackground(buttonColor);
+
+        slots[0].setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
+        slots[1].setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
+        slots[2].setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
+        slots[3].setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
+
+        add(slots[0]);
+        add(slots[1]);
+        add(slots[2]);
+        add(slots[3]);
+        */
     }
 
     public JPanel getPanel(){
         return this;
     }
 
-    public static void getItemZero(){
+    void getItemZero(){
         slots[0].setEnabled(true);
-        slots[0].setText("Key");
     }
 
-    public static void getItemOne(){
+    void getItemOne(){
         slots[1].setEnabled(true);
     }
 
-    public static void getItemTwo(){
+    void getItemTwo(){
         slots[2].setEnabled(true);
     }
 
-    public static void getItemThree(){
+    void getItemThree(){
         slots[3].setEnabled(true);
-    }
-
-    public static void useItemZero(){
-
-    }
-
-    public static void useItemOne(){
-        
-    }
-
-    public static void useItemTwo(){
-        
-    }
-
-    public static void useItemThree(){
-        
     }
 
     public void actionPerformed(ActionEvent e){

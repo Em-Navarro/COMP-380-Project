@@ -59,9 +59,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public String getRoom() {
-        return "B1";
-    }
+    public int getIndex(){ return -1; }
 
     public void moveUp() {
         if(links[0] != null){
@@ -74,23 +72,19 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     public void moveLeft() { 
         if(links[2] != null)
             Main.switchRooms(layeredPane, links[2], this);
-        Player.changeCurrentLocation(links[2].getRoom());
             addPlayerComponents((JPanel)links[2]);
          }
 
     public void moveRight() {
         if(links[3] != null){
             Main.switchRooms(layeredPane, links[3], this);
-            Player.changeCurrentLocation(links[3].getRoom());
             addPlayerComponents((JPanel)links[3]);
         }
     }
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
-        panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
-        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {

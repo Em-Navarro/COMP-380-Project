@@ -47,14 +47,11 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public String getRoom() {
-        return "B3";
-     }
+    public int getIndex(){ return -1; }
 
     public void moveLeft() {
         if(links[2] != null){
             Main.switchRooms(layeredPane, links[2], this);
-            Player.changeCurrentLocation(links[2].getRoom());
             addPlayerComponents((JPanel)links[2]);
         }
     }
@@ -65,9 +62,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
 
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
-        panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
-        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {

@@ -165,9 +165,7 @@ public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
    public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public String getRoom() {
-        return null;
-     }
+    public int getIndex(){ return -1; }
 
     public void moveUp() {}
 
