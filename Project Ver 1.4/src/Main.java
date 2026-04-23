@@ -2,34 +2,37 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-
     static JFrame frame;
     static JLayeredPane layeredPane;
+    static Player player;
 
     public static void main(String[] args) {
+        player = new Player();
 
         frame = new JFrame("Game");
         frame.setSize(1300, 1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        frame.setLayout(new FlowLayout(FlowLayout.CENTER,10,10));
 
         layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(1300,1000));
         layeredPane.setBounds(0, 0, 1300, 1000);
 
         //Creating Rooms here
         StartScreen startScreen = new StartScreen(layeredPane);
-        StartRoom startRoom = new StartRoom(layeredPane);
+        StartRoom startRoom = new StartRoom(layeredPane, player);
 
-        A1 a1 = new A1(layeredPane);
-        A2 a2 = new A2(layeredPane);
-        A3 a3 = new A3(layeredPane);
+        A1 a1 = new A1(layeredPane, player);
+        A2 a2 = new A2(layeredPane, player);
+        A3 a3 = new A3(layeredPane, player);
 
-        B1 b1 = new B1(layeredPane);
-        B2 b2 = new B2(layeredPane);
-        B3 b3 = new B3(layeredPane);
+        B1 b1 = new B1(layeredPane, player);
+        B2 b2 = new B2(layeredPane, player);
+        B3 b3 = new B3(layeredPane, player);
+        WaterPuzzle waterPuzzle = new WaterPuzzle(layeredPane,player);
 
-        C2 c2 = new C2(layeredPane);
-        C3 c3 = new C3(layeredPane);
+        C2 c2 = new C2(layeredPane, player);
+        C3 c3 = new C3(layeredPane, player);
 
         EndRoom endRoom = new EndRoom(layeredPane);
 
@@ -44,12 +47,12 @@ public class Main {
         b1.create();
         b2.create();
         b3.create();
+        waterPuzzle.create();
 
         c2.create();
         c3.create();
 
         endRoom.create();
-
 
         layeredPane.add(startScreen, Integer.valueOf(0));
         layeredPane.add(startRoom, Integer.valueOf(0));
@@ -61,6 +64,7 @@ public class Main {
         layeredPane.add(b1, Integer.valueOf(0));
         layeredPane.add(b2, Integer.valueOf(0));
         layeredPane.add(b3, Integer.valueOf(0));
+        layeredPane.add(waterPuzzle, Integer.valueOf(0));
 
         layeredPane.add(c2, Integer.valueOf(0));
         layeredPane.add(c3, Integer.valueOf(0));
@@ -72,22 +76,23 @@ public class Main {
         // Start
         startScreen.getLinks(startRoom, null, null, null);
 
+        // StartRoom → goes to A1
+        startRoom.getLinks(a1, null, null, null);
+
         // A row
-        a1.getLinks(null, null, null, a2);
+        a1.getLinks(null, startRoom, null, a2);
         a2.getLinks(b2, null, a1, a3);
         a3.getLinks(null, null, a2, null);
 
         // B row
-        b1.getLinks(endRoom, null, null, b2);
+        b1.getLinks(endRoom, null, waterPuzzle, b2);
         b2.getLinks(c2, a2, b1, b3);
         b3.getLinks(null, null, b2, null);
+        waterPuzzle.getLinks(null,null,null,b1);
 
         // C row
         c2.getLinks(endRoom, b2, null, c3);
         c3.getLinks(null, null, c2, null);
-
-        // StartRoom → goes to A2
-        startRoom.getLinks(a2, null, null, null);
 
         //INITIAL VISIBILITY
         startScreen.showRoom();

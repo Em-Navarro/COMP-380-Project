@@ -16,7 +16,7 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
     JLabel title;
     JLabel background;
     JButton startButton; // maybe drawn buttons
-    JButton optionButton;
+    JButton creditButton;
     ImageIcon backgroundImage;
 
     public StartScreen(JLayeredPane x){
@@ -29,9 +29,9 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void create(){
-        title = new JLabel("We Need A Title");
+        title = new JLabel("A Knight's Story");
         startButton = new JButton("Start");
-        optionButton = new JButton("Options");
+        creditButton = new JButton("Credit");
 
         title.setBounds(150,120,1000,100);
         title.setHorizontalAlignment(JLabel.CENTER);
@@ -50,13 +50,13 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         startButton.setFocusable(false);
         startButton.addActionListener(this);
 
-        optionButton.setBounds(400,400,500,100);
-        optionButton.setFocusable(false);
-        optionButton.addActionListener(this);
+        creditButton.setBounds(400,400,500,100);
+        creditButton.setFocusable(false);
+        creditButton.addActionListener(this);
         
         add(title);
         add(startButton);
-        add(optionButton);
+        add(creditButton);
         add(background);
         return;
     }
@@ -71,8 +71,8 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         return;
     }
 
-     public int getIndex() {
-        return -2;
+     public String getRoom() {
+        return null;
      }
 
     @Override
@@ -80,7 +80,7 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         if(e.getSource() == startButton){
             moveUp();
         }
-        else if(e.getSource() == optionButton){
+        else if(e.getSource() == creditButton){
             System.out.println("Options pressed");
             //probably its own class since its not a room; can't implement roombuilder
             return;

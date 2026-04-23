@@ -5,19 +5,21 @@ import java.awt.event.*;
 public class C2 extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton upButton, downButton, rightButton;
 
-    public C2(JLayeredPane x) {
+    public C2(JLayeredPane x, Player y) {
         setBounds(0,0,1300,1000);
         setLayout(null);
         setVisible(false);
         layeredPane = x;
+        player = y;
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("Background Images/C2.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/C2_Closed.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -60,24 +62,40 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
-    public int getIndex(){ return -1; }
+    public String getRoom() {
+        return "C2";
+     }
 
     public void moveUp() {
-        if(links[0] != null)
+        if(links[0] != null){
             Main.switchRooms(layeredPane, links[0], this);
+        }
     }
 
     public void moveDown() {
-        if(links[1] != null)
+        if(links[1] != null){
             Main.switchRooms(layeredPane, links[1], this);
+            Player.changeCurrentLocation(links[1].getRoom());
+            addPlayerComponents((JPanel)links[1]);
+        }
     }
 
     public void moveRight() {
-        if(links[3] != null)
+        if(links[3] != null){
             Main.switchRooms(layeredPane, links[3], this);
+            Player.changeCurrentLocation(links[3].getRoom());
+            addPlayerComponents((JPanel)links[3]);
+        }
     }
 
     public void moveLeft() {}
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
+        panel.add(player.getTextBox());
+        panel.setComponentZOrder(player.getInventory(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
+    }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton) moveUp();

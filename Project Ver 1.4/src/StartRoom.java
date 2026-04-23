@@ -12,19 +12,22 @@ import java.awt.Image;
 public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton upButton;
-    StartRoom(JLayeredPane x){
+    StartRoom(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
         setOpaque(true);
         setVisible(false);
         setLayout(null);
         layeredPane = x;
+        player = y;
     }
 
     public void create() {
         ImageIcon roomImage = new ImageIcon("Background Images/Start_Area.png");
+        //Project Ver 1.4\src\Background Images\Test_Start.png
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -37,8 +40,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         upButton = new JButton("↑");
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
 
-
-
         label.setBounds(300,300,1000,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
@@ -48,6 +49,8 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
         add(label);
         add(upButton);
+        add(player.getInventory());
+        add(player.getTextBox());
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }
@@ -60,12 +63,14 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -2;
+    public String getRoom() {
+        return "SR";
     }
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        Player.changeCurrentLocation(links[0].getRoom());
+        addPlayerComponents((JPanel)links[0]);
     }
 
     public void moveLeft() {
@@ -75,6 +80,13 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void moveDown() {
+    }
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
+        panel.add(player.getTextBox());
+        panel.setComponentZOrder(player.getInventory(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {

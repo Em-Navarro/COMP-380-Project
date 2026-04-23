@@ -12,20 +12,22 @@ import java.awt.Image;
 public class A2 extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Player player;
 
     JLabel label;
     JButton upButton; //deactivate until puzzle solved
     JButton leftButton;
     JButton rightButton;
-    A2(JLayeredPane x){
+    A2(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
         setOpaque(true);
         setVisible(false);
         setLayout(null);
         layeredPane = x;
+        player = y;
     }
      public void create() {
-         ImageIcon roomImage = new ImageIcon("Background Images/A2_Closed.png");
+         ImageIcon roomImage = new ImageIcon("./Background Images/A2_Closed.png");
          Image img = roomImage.getImage();
          Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
          roomImage = new ImageIcon(scaledImg);
@@ -78,23 +80,36 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         setVisible(false);
     }
 
-    public int getIndex() {
-        return -4;
-    }
+    public String getRoom() {
+        return "A2";
+     }
 
     public void moveUp() {
         Main.switchRooms(layeredPane, links[0], this);
+        Player.changeCurrentLocation(links[0].getRoom());
+        addPlayerComponents((JPanel)links[0]);
     }
 
     public void moveLeft() {
         Main.switchRooms(layeredPane, links[2], this);
+        Player.changeCurrentLocation(links[2].getRoom());
+        addPlayerComponents((JPanel)links[2]);
     }
 
     public void moveRight() {
         Main.switchRooms(layeredPane, links[3], this);
+        Player.changeCurrentLocation(links[3].getRoom());
+        addPlayerComponents((JPanel)links[3]);
     }
 
     public void moveDown() {
+    }
+
+    public void addPlayerComponents(JPanel panel){
+        panel.add(player.getInventory());
+        panel.add(player.getTextBox());
+        panel.setComponentZOrder(player.getInventory(), 0);
+        panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
     public void actionPerformed(ActionEvent e) {
