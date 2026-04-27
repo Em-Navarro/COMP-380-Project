@@ -20,6 +20,7 @@ public class Main {
 
         //Creating Rooms here
         StartScreen startScreen = new StartScreen(layeredPane);
+        StartCutscene startCutscene = new StartCutscene(layeredPane);
         StartRoom startRoom = new StartRoom(layeredPane, player);
 
         A1 a1 = new A1(layeredPane, player);
@@ -36,8 +37,8 @@ public class Main {
 
         EndRoom endRoom = new EndRoom(layeredPane);
 
-
         startScreen.create();
+        startCutscene.create();
         startRoom.create();
 
         a1.create();
@@ -55,6 +56,7 @@ public class Main {
         endRoom.create();
 
         layeredPane.add(startScreen, Integer.valueOf(0));
+        layeredPane.add(startCutscene, Integer.valueOf(0));
         layeredPane.add(startRoom, Integer.valueOf(0));
 
         layeredPane.add(a1, Integer.valueOf(0));
@@ -74,7 +76,10 @@ public class Main {
         // ===== LINK ROOMS =====
 
         // Start
-        startScreen.getLinks(startRoom, null, null, null);
+        startScreen.getLinks(startCutscene, null, null, null);
+
+        //Room for cutscene images
+        startCutscene.getLinks(startRoom,null,null,null);
 
         // StartRoom → goes to A1
         startRoom.getLinks(a1, null, null, null);
