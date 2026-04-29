@@ -2,12 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class B3 extends JPanel implements ActionListener, RoomBuilder {
+public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseListener {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
 
     JLabel label;
+    JLabel note;
     JButton leftButton;
 
     public B3(JLayeredPane x, Player y) {
@@ -19,7 +20,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("src/Background Images/B3.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/B3.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -32,6 +33,13 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
         label.setBounds(500,300,300,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,80));
 
+        ImageIcon noteIcon = new ImageIcon("Background Images/Item_Note_200x200.png");
+        note = new JLabel();
+        note.setIcon(noteIcon);
+        note.setBounds(100,100,500,500);
+        note.setVisible(true);
+        note.addMouseListener(this);
+
         leftButton = new JButton("←");
         leftButton.setBounds(350,250,60,60);
         leftButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -39,6 +47,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
         leftButton.addActionListener(this);
 
         add(label);
+        add(note);
         add(leftButton);
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
@@ -77,4 +86,24 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder {
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
         links = new RoomBuilder[]{up, down, left, right};
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Inventory.getItemOne();
+        remove(note);
+        revalidate();
+        repaint();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

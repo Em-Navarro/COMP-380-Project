@@ -28,7 +28,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         player = y;
     }
      public void create() {
-        ImageIcon roomImage = new ImageIcon("src/Background Images/A3.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/A3.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -40,7 +40,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         label.setBounds(300,300,1000,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
-        ImageIcon keyIcon = new ImageIcon("src/Background Images/Item_Key_200x200.png");
+        ImageIcon keyIcon = new ImageIcon("Background Images/Item_Key_200x200.png");
         key = new JLabel();
         key.setIcon(keyIcon);
         key.setBounds(100,100,500,500);

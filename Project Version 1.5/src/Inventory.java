@@ -8,7 +8,8 @@ import java.awt.Color;
 public class Inventory extends JPanel implements ActionListener{
     static JButton[] slots;
     static boolean hasKeyItem = false;
-    static boolean hasNoteItem = false;
+    static boolean hasItemOne = false;
+    static boolean hasItemTwo = false;
     Color panelColor = Color.decode("#18230F");
     Color borderColor = Color.decode("#27391C");
     Color buttonColor = Color.decode("#1F7D53");
@@ -59,12 +60,14 @@ public class Inventory extends JPanel implements ActionListener{
 
     public static void getItemOne(){
         slots[1].setEnabled(true);
-        slots[1].setText("Note");
-        hasNoteItem = true;
+        slots[1].setText("B3 Note");
+        hasItemOne = true;
     }
 
     public static void getItemTwo(){
         slots[2].setEnabled(true);
+        slots[2].setText("C3 Note");
+        hasItemTwo = true;
     }
 
     public static void getItemThree(){
@@ -82,17 +85,34 @@ public class Inventory extends JPanel implements ActionListener{
     }
 
     public static void useItemOne(){
-        if (!hasNoteItem) return;
-        if (!"C2".equals(Player.getCurrentLocation())) return;
+        if (!hasItemOne) return;
+        if ("B2".equals(Player.getCurrentLocation())) {
+            B2.tryUnlockGateWithCodePrompt();
+        }
+    }
 
-        C2.unlockGateWithNote();
-        hasNoteItem = false;
+    public static void markItemOneUsed(){
+        hasItemOne = false;
         slots[1].setText("Used");
         slots[1].setEnabled(false);
     }
 
     public static void useItemTwo(){
-        
+        if (!hasItemTwo) return;
+        if ("C2".equals(Player.getCurrentLocation())) {
+            C2.unlockGateWithNote();
+            hasItemTwo = false;
+            slots[2].setText("Used");
+            slots[2].setEnabled(false);
+            return;
+        }
+        if ("B2".equals(Player.getCurrentLocation())) {
+            B2.tryUnlockGateWithCodePrompt();
+        }
+    }
+
+    public static boolean hasItemTwo() {
+        return hasItemTwo;
     }
 
     public static void useItemThree(){
@@ -104,6 +124,8 @@ public class Inventory extends JPanel implements ActionListener{
             useItemZero();
         } else if (e.getSource() == slots[1]) {
             useItemOne();
+        } else if (e.getSource() == slots[2]) {
+            useItemTwo();
         }
     }
     

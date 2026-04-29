@@ -20,7 +20,7 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("src/Background Images/C3.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/C3.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -33,7 +33,7 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         label.setBounds(500,300,300,100);
         label.setFont(new Font("MV Boli",Font.PLAIN,80));
 
-        ImageIcon noteIcon = new ImageIcon("src/Background Images/Item_Note_200x200.png");
+        ImageIcon noteIcon = new ImageIcon("Background Images/Item_Note_200x200.png");
         note = new JLabel();
         note.setIcon(noteIcon);
         note.setBounds(100,100,500,500);
@@ -89,7 +89,7 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Inventory.getItemOne();
+        Inventory.getItemTwo();
         remove(note);
         revalidate();
         repaint();

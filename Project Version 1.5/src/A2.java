@@ -19,6 +19,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
     JLabel label;
     JLabel background;
     JButton upButton; //deactivate until puzzle solved
+    JButton downButton;
     JButton leftButton;
     JButton rightButton;
     A2(JLayeredPane x, Player y){
@@ -31,7 +32,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         instance = this;
     }
      public void create() {
-         ImageIcon roomImage = new ImageIcon("src/Background Images/A2_Closed.png");
+         ImageIcon roomImage = new ImageIcon("Background Images/A2_Closed.png");
          Image img = roomImage.getImage();
          Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
          roomImage = new ImageIcon(scaledImg);
@@ -42,9 +43,11 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
         label = new JLabel("A2");
         upButton = new JButton("↑");
+        downButton = new JButton("↓");
         leftButton = new JButton("←");
         rightButton = new JButton("→");
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
+        downButton.setFont(new Font("Arial", Font.BOLD, 20));
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
         leftButton.setFont(new Font("Arial", Font.BOLD, 20));
 
@@ -59,6 +62,10 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         upButton.setFocusable(false);
         upButton.addActionListener(this);
 
+        downButton.setBounds(600,500,60,60);
+        downButton.setFocusable(false);
+        downButton.addActionListener(this);
+
         leftButton.setBounds(350,250,60,60);
         leftButton.setFocusable(false);
         leftButton.addActionListener(this);
@@ -70,6 +77,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
         add(label);
         add(upButton);
+        add(downButton);
         add(leftButton);
         add(rightButton);
          // force background behind everything
@@ -82,7 +90,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
         if (instance == null) return;
 
-        ImageIcon roomImage = new ImageIcon("src/Background Images/A2_open.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/A2_open.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
@@ -124,6 +132,11 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void moveDown() {
+        if(links[1] != null){
+            Main.switchRooms(layeredPane, links[1], this);
+            Player.changeCurrentLocation(links[1].getRoom());
+            addPlayerComponents((JPanel)links[1]);
+        }
     }
 
     public void addPlayerComponents(JPanel panel){
@@ -145,6 +158,9 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         }
         else if(e.getSource() == rightButton){
             moveRight();
+        }
+        else if(e.getSource() == downButton){
+            moveDown();
         }
     }
 

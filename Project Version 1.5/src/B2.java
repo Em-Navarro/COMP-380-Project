@@ -1,12 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class B2 extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    static B2 instance;
+    static boolean gateUnlocked = false;
 
+    JLabel background;
     JLabel label;
     JButton upButton, downButton, leftButton, rightButton;
 
@@ -16,15 +20,16 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         setVisible(false);
         layeredPane = x;
         player = y;
+        instance = this;
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("src/Background Images/B2_Closed.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/B2_Closed.png");
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
 
-        JLabel background = new JLabel(roomImage);
+        background = new JLabel(roomImage);
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
@@ -35,6 +40,7 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
+        upButton.setEnabled(false);
 
 
         downButton = new JButton("↓");
@@ -67,6 +73,44 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         setComponentZOrder(background, getComponentCount() - 1);
     }
 
+    static void tryUnlockGateWithCodePrompt() {
+        if (instance == null) return;
+        if (gateUnlocked) return;
+        if (!"B2".equals(Player.getCurrentLocation())) return;
+
+        while (true) {
+            String input = JOptionPane.showInputDialog(instance, "Enter code:");
+            if (input == null) return;
+
+            if ("stars".equalsIgnoreCase(input.trim())) {
+                unlockGateWithNote();
+                Inventory.markItemOneUsed();
+                return;
+            }
+            JOptionPane.showMessageDialog(instance, "Incorrect code.");
+        }
+    }
+
+    static void unlockGateWithNote() {
+        if (gateUnlocked) return;
+        gateUnlocked = true;
+        if (instance == null) return;
+
+        String openPath = "Background Images/B2_Open.png";
+        if (!new File(openPath).exists()) {
+            openPath = "Background Images/B2_open.png";
+        }
+
+        ImageIcon roomImage = new ImageIcon(openPath);
+        Image img = roomImage.getImage();
+        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        roomImage = new ImageIcon(scaledImg);
+        instance.background.setIcon(roomImage);
+        instance.upButton.setEnabled(true);
+        instance.revalidate();
+        instance.repaint();
+    }
+
     public void showRoom(){ setVisible(true); }
     public void hideRoom(){ setVisible(false); }
 
@@ -75,6 +119,7 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
      }
 
     public void moveUp() {
+        if(!gateUnlocked) return;
         if(links[0] != null){
             Main.switchRooms(layeredPane, links[0], this);
             Player.changeCurrentLocation(links[0].getRoom());

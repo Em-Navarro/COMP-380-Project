@@ -20,6 +20,7 @@ public class Main {
 
         //Creating Rooms here
         StartScreen startScreen = new StartScreen(layeredPane);
+        StartCutscene startCutscene = new StartCutscene(layeredPane);
         StartRoom startRoom = new StartRoom(layeredPane, player);
 
         A1 a1 = new A1(layeredPane, player);
@@ -35,9 +36,10 @@ public class Main {
         C3 c3 = new C3(layeredPane, player);
 
         EndRoom endRoom = new EndRoom(layeredPane);
-
+        monsterRoom monsterRoom = new monsterRoom(layeredPane);
 
         startScreen.create();
+        startCutscene.create();
         startRoom.create();
 
         a1.create();
@@ -53,8 +55,10 @@ public class Main {
         c3.create();
 
         endRoom.create();
+        monsterRoom.create();
 
         layeredPane.add(startScreen, Integer.valueOf(0));
+        layeredPane.add(startCutscene, Integer.valueOf(0));
         layeredPane.add(startRoom, Integer.valueOf(0));
 
         layeredPane.add(a1, Integer.valueOf(0));
@@ -70,19 +74,24 @@ public class Main {
         layeredPane.add(c3, Integer.valueOf(0));
 
         layeredPane.add(endRoom, Integer.valueOf(0));
+        layeredPane.add(monsterRoom, Integer.valueOf(0));
 
         // ===== LINK ROOMS =====
 
         // Start
-        startScreen.getLinks(startRoom, null, null, null);
+        startScreen.getLinks(startCutscene, null, null, null);
+
+        //Room for cutscene images
+        startCutscene.getLinks(startRoom,null,null,null);
 
         // StartRoom → goes to A1
         startRoom.getLinks(a1, null, null, null);
 
         // A row
         a1.getLinks(null, startRoom, null, a2);
-        a2.getLinks(b2, null, a1, a3);
+        a2.getLinks(b2, monsterRoom, a1, a3);
         a3.getLinks(null, null, a2, null);
+        monsterRoom.getLinks(startScreen, null, null, null);
 
         // B row
         b1.getLinks(endRoom, null, waterPuzzle, b2);

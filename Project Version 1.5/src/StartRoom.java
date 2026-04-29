@@ -26,7 +26,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     }
 
     public void create() {
-        ImageIcon roomImage = new ImageIcon("src/Background Images/Start_Area.png");
+        ImageIcon roomImage = new ImageIcon("Background Images/Start_Area.png");
         //Project Ver 1.4\src\Background Images\Test_Start.png
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
@@ -71,6 +71,9 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         Main.switchRooms(layeredPane, links[0], this);
         Player.changeCurrentLocation(links[0].getRoom());
         addPlayerComponents((JPanel)links[0]);
+
+        //add logic to this where if player leaves and comes back using this button, it doesnt play again
+        TextBox.writeToTextBox("Testing TextBox and I am going to talk a lot because I want to make sure that the wrapping still works even though its formatted differently");
     }
 
     public void moveLeft() {

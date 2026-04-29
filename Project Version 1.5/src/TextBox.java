@@ -4,12 +4,14 @@ import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class TextBox extends JPanel{
     Color panelColor = Color.decode("#18230F");
     Color borderColor = Color.decode("#27391C");
-    JLabel label;
+    static JLabel label;
 
     TextBox(){
         setBounds(200,570,925,150);
@@ -28,7 +30,27 @@ public class TextBox extends JPanel{
         add(label);
     }
 
-    static void writeToTextBox(){
+    static void writeToTextBox(String str){
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask(){
 
+            StringBuilder currString = new StringBuilder();
+            char[] c = str.toCharArray();
+            int count = 0;
+
+            @Override
+            public void run(){
+                try{
+                    currString.append(c[count]);
+                    count++;
+                    label.setText("<html><body style='width: 675px; padding: 5px;'>" + currString + "</html>");
+                    label.repaint();
+                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                    return;
+                }
+            }
+        };
+        
+        timer.scheduleAtFixedRate(task,0,50);   
     }
 }
