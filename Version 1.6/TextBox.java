@@ -18,7 +18,7 @@ public class TextBox extends JPanel{
 
 
     TextBox(){
-        setBounds(200,570,925,150);
+        setBounds(200,570,925,140);
         setBackground(panelColor);
         setBorder(BorderFactory.createLineBorder(borderColor,10));
         setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -42,7 +42,6 @@ public class TextBox extends JPanel{
         if(isTyping){
             return;
         }
-
         isTyping = true;
 
         Timer timer = new Timer();

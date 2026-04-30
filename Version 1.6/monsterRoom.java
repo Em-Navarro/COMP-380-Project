@@ -81,7 +81,8 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == restartButton) {
-            restartGame();
+            System.exit(0);
+            //restartGame();
         }
     }
 }
