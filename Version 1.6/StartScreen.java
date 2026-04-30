@@ -6,12 +6,16 @@ import java.awt.Color;
 import javax.swing.JButton; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
 public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
     
 
     JLabel title;
@@ -34,9 +38,9 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         startButton = new JButton("Start");
         creditButton = new JButton("Credit");
 
-        title.setBounds(150,120,1000,100);
+        title.setBounds(150,120,1000,110);
         title.setHorizontalAlignment(JLabel.CENTER);
-        title.setForeground(Color.green);
+        title.setForeground(Color.decode("#203a1e"));
         title.setFont(new Font("MV Boli",Font.PLAIN,100));
 
         //maybe a special background
@@ -47,13 +51,17 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         background = new JLabel(backgroundImage);
         background.setBounds(0,0,1300,1000);
 
-        startButton.setBounds(400,250,500,100);
+        startButton.setBounds(400,250,500,150);
         startButton.setFocusable(false);
         startButton.addActionListener(this);
+        startButton.setBackground(buttonColor);
+        startButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
 
-        creditButton.setBounds(400,400,500,100);
+        creditButton.setBounds(400,450,500,150);
         creditButton.setFocusable(false);
         creditButton.addActionListener(this);
+        creditButton.setBackground(buttonColor);
+        creditButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
         
         add(title);
         add(startButton);

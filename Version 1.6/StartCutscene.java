@@ -4,12 +4,16 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;  
 import java.awt.Font;
+import javax.swing.BorderFactory;
+import java.awt.Color;
 
 public class StartCutscene extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     JButton button;
     Player player;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
 
 
     StartCutscene(JLayeredPane x, Player y){
@@ -25,6 +29,8 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
         button = new JButton("→");
         button.setBounds(925,520,200,50);
         button.setFont(new Font("Arial", Font.BOLD, 50));
+        button.setBackground(buttonColor);
+        button.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
         button.addActionListener(this);
 
         add(player.getTextBox());
