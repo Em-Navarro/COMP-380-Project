@@ -2,9 +2,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JButton;  
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 import java.awt.Color;
 
 public class StartCutscene extends JPanel implements ActionListener, RoomBuilder{
@@ -12,6 +15,11 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
     RoomBuilder[] links;
     JButton button;
     Player player;
+    JLabel background;
+    ImageIcon scene1;
+    ImageIcon scene2;
+    ImageIcon scene3;
+    int count = 1;
     Color buttonColor = Color.decode("#7d6b45");
     Color buttonBorderColor = Color.decode("#c4ae86");
 
@@ -26,6 +34,26 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
     }
     
     public void create(){
+
+        scene1 = new ImageIcon("Cutscene Images/Intro1.png");
+        Image img = scene1.getImage();
+        Image scaledImg1 = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        scene1 = new ImageIcon(scaledImg1);
+
+        scene2 = new ImageIcon("Cutscene Images/Intro2.png");
+        Image img2 = scene2.getImage();
+        Image scaledImg2 = img2.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        scene2 = new ImageIcon(scaledImg2);
+
+        scene3 = new ImageIcon("Cutscene Images/Intro3.png");
+        Image img3 = scene3.getImage();
+        Image scaledImg3 = img3.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        scene3 = new ImageIcon(scaledImg3);
+
+        background = new JLabel(scene1);
+        background.setBounds(0, 0, 1300, 1000);
+        add(background);
+
         button = new JButton("→");
         button.setBounds(925,520,200,50);
         button.setFont(new Font("Arial", Font.BOLD, 50));
@@ -40,9 +68,9 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
     public void showRoom() {
         setVisible(true);
         disableButtons();
-        TextBox.writeToTextBox("Start Cutscene Text", () ->  activateButtons());
-        //maybe make diffeent methods, and add a counter to actionPerformed
-        // so it can call diff methods w/ diff parts of the story
+        TextBox.writeToTextBox("Scene 1", () -> activateButtons());
+        setComponentZOrder(player.getTextBox(), 2);
+        setComponentZOrder(button, 1);
     }
 
     public void hideRoom() {
@@ -78,12 +106,30 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
 
     public void activateButtons(){  
         button.setEnabled(true);
+        setComponentZOrder(player.getTextBox(), 2);
+        setComponentZOrder(button, 1);
     }
 
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == button){
-            moveUp();
+            if(count == 1){
+                disableButtons();
+                TextBox.writeToTextBox("Scene 2", () -> activateButtons());
+                background.setIcon(scene2);
+                count++;
+                background.repaint();
+            }
+            else if(count == 2){
+                disableButtons();
+                TextBox.writeToTextBox("Scene 3", () -> activateButtons());
+                count++;
+                background.setIcon(scene3);
+                background.repaint();
+            }
+            else{
+                moveUp();
+            }
         }
     }    
     
