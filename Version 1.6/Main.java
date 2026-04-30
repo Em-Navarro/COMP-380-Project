@@ -30,8 +30,7 @@ public class Main {
         B1 b1 = new B1(layeredPane, player);
         B2 b2 = new B2(layeredPane, player);
         B3 b3 = new B3(layeredPane, player);
-        WaterPuzzle waterPuzzle = new WaterPuzzle(layeredPane,player);
-
+       
         C2 c2 = new C2(layeredPane, player);
         C3 c3 = new C3(layeredPane, player);
 
@@ -49,7 +48,7 @@ public class Main {
         b1.create();
         b2.create();
         b3.create();
-        waterPuzzle.create();
+  
 
         c2.create();
         c3.create();
@@ -68,8 +67,7 @@ public class Main {
         layeredPane.add(b1, Integer.valueOf(0));
         layeredPane.add(b2, Integer.valueOf(0));
         layeredPane.add(b3, Integer.valueOf(0));
-        layeredPane.add(waterPuzzle, Integer.valueOf(0));
-
+       
         layeredPane.add(c2, Integer.valueOf(0));
         layeredPane.add(c3, Integer.valueOf(0));
 
@@ -94,10 +92,10 @@ public class Main {
         monsterRoom.getLinks(startScreen, null, null, null);
 
         // B row
-        b1.getLinks(endRoom, null, waterPuzzle, b2);
+        b1.getLinks(endRoom, null, null, b2);
         b2.getLinks(c2, a2, b1, b3);
         b3.getLinks(null, null, b2, null);
-        waterPuzzle.getLinks(null,null,null,b1);
+        
 
         // C row
         c2.getLinks(endRoom, b2, null, c3);

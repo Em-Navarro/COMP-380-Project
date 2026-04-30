@@ -38,22 +38,26 @@ import java.awt.event.*;
     }
     
     
-public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
-    JLayeredPane layeredPane;
-    RoomBuilder[] links;
-    Player player;
+public class WaterPuzzle extends JPanel implements ActionListener {
+    //JLayeredPane layeredPane;
+
+    //Player player;
+    static WaterPuzzle instance;
 
     JLabel smallOneLabel, smallTwoLabel, largeOneLabel, largeTwoLabel, largeThreeLabel, largeFourLabel;
     JButton rightButton, fillLargeButton, emptyLargeButton, transferLargeButton, fillSmallButton, emptySmallButton, transferSmallButton;
     Container smallContainer = new Container(3);
     Container largeContainer = new Container(5);
+    B1 b1;
+    boolean complete = false;
     
-    public WaterPuzzle(JLayeredPane x, Player y) {
-        setBounds(0,0,1300,1000);
+    public WaterPuzzle(B1 room) {
+        setBounds(200,25,800,500);
         setLayout(null);
+       // setOpaque(true);
         setVisible(false);
-        layeredPane = x;
-        player =y;
+        setBackground(Color.darkGray);
+       b1 =room;
     }
     
     public void create(){
@@ -66,9 +70,7 @@ public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
         roomImage = new ImageIcon(scaledImg);
         
         
-        JLabel background = new JLabel(roomImage);
-        background.setBounds(0, 0, 1300, 1000);
-        add(background);
+
         
      
         smallOneLabel = new JLabel("1");
@@ -164,8 +166,8 @@ public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
         add(fillSmallButton);
         add(emptySmallButton);
         add(transferSmallButton);
-        // force background behind everything
-        setComponentZOrder(background, getComponentCount() - 1);
+
+
         
         
         
@@ -212,43 +214,41 @@ super.paint(g);
  }
 
 
-   public void showRoom(){ setVisible(true); }
-    public void hideRoom(){ setVisible(false); }
 
-    public String getRoom() {
-        return "BW";
-     }
 
-    public void moveUp() {}
-
-    public void moveDown() {}
-
-    public void moveLeft() {}
-
-    public void moveRight() {
-        if(links[3] != null)
-        Main.switchRooms(layeredPane, links[3], this);
-        Player.changeCurrentLocation(links[3].getRoom());
-        addPlayerComponents((JPanel)links[3]);
-    }
     
-    public void addPlayerComponents(JPanel panel){
-        panel.add(player.getInventory());
-        panel.add(player.getTextBox());
-        panel.setComponentZOrder(player.getInventory(), 0);
-        panel.setComponentZOrder(player.getTextBox(), 0);
-    }
-    
-    public void disableButtons(){   
-    }
 
-    public void activateButtons(){  
-    }
 
+    public void winPuzzle(){
+        fillLargeButton.setEnabled(false);
+        emptyLargeButton.setEnabled(false);
+        transferLargeButton.setEnabled(false);
+
+        transferSmallButton.setEnabled(false);
+        complete = true;
+        b1.winPuzzle();
+
+
+
+/*
+        ImageIcon roomImage = new ImageIcon("src/Background Images/A2_open.png");
+        Image img = roomImage.getImage();
+        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        roomImage = new ImageIcon(scaledImg);
+
+        instance.background.setIcon(roomImage);
+
+        instance.revalidate();
+        instance.repaint();
+*/
+
+
+
+    }
 
     
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == rightButton) moveRight();
+
         
         if(e.getSource() == fillLargeButton){
         largeContainer.fill();
@@ -267,8 +267,8 @@ super.paint(g);
 
         repaint();
         if (largeContainer.water == 4){
-        // victory condition
-        // open up path in B1
+
+        winPuzzle();
         }
         }  
         
@@ -293,16 +293,11 @@ super.paint(g);
      
         repaint();
         if (largeContainer.water == 4){
-        // victory condition
-        // open up path in B1
+        winPuzzle();
         }
         }  
 
         
            }
-    
-    
-      public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
-        links = new RoomBuilder[]{up, down, left, right};
-    }
+
 }

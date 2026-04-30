@@ -8,8 +8,10 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     Player player;
     boolean visited = false;
 
-    JLabel label;
-    JButton upButton,leftButton, rightButton;
+    JLabel label,background;
+    JButton upButton, containerButton, rightButton;
+    static B1 instance;
+    static  WaterPuzzle waterPuzzle;
 
     public B1(JLayeredPane x, Player y) {
         setBounds(0,0,1300,1000);
@@ -17,6 +19,9 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         setVisible(false);
         layeredPane = x;
         player = y;
+        instance= this;
+        waterPuzzle = new WaterPuzzle(this);
+        waterPuzzle.create();
     }
 
     public void create() {
@@ -25,7 +30,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
 
-        JLabel background = new JLabel(roomImage);
+        background = new JLabel(roomImage);
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
@@ -37,11 +42,12 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         upButton.setBounds(600,30,60,60);
         upButton.addActionListener(this);
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
+        upButton.setEnabled(false);
 
-        leftButton = new JButton("←");
-        leftButton.setBounds(350,250,60,60);
-        leftButton.addActionListener(this);
-        leftButton.setFont(new Font("Arial", Font.BOLD, 20));
+        containerButton = new JButton("?");
+        containerButton.setBounds(100,250,60,60);
+        containerButton.addActionListener(this);
+        containerButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         rightButton = new JButton("→");
         rightButton.setBounds(850,250,60,60);
@@ -51,14 +57,16 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
 
         add(label);
         add(upButton);
-        add(leftButton);
+        add(containerButton);
         add(rightButton);
+        add(waterPuzzle);
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }
 
     public void showRoom(){
-        setVisible(true); 
+    setVisible(true);
+
         if(!visited){
             disableButtons();
             TextBox.writeToTextBox("B1 Text", () ->  activateButtons());
@@ -82,12 +90,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
 
     public void moveDown() {}
 
-    public void moveLeft() { 
-        if(links[2] != null)
-            Main.switchRooms(layeredPane, links[2], this);
-        Player.changeCurrentLocation(links[2].getRoom());
-            addPlayerComponents((JPanel)links[2]);
-         }
+    public void moveLeft() {}
 
     public void moveRight() {
         if(links[3] != null){
@@ -97,6 +100,34 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         }
     }
 
+    public void toggleContainers(){
+        if (waterPuzzle.isVisible()) {
+            waterPuzzle.setVisible(false);
+            upButton.setVisible(true);
+            rightButton.setVisible(true);
+        }else {
+            waterPuzzle.setVisible(true);
+            upButton.setVisible(false);
+            rightButton.setVisible(false);
+        }
+    }
+    public void winPuzzle(){
+        if (instance == null) return;
+
+        ImageIcon roomImage = new ImageIcon("Background Images/B1_open.png");
+        Image img = roomImage.getImage();
+        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        roomImage = new ImageIcon(scaledImg);
+
+        instance.background.setIcon(roomImage);
+        instance.upButton.setEnabled(true);
+        instance.revalidate();
+        instance.repaint();
+
+
+        // text "that did something!"
+
+    }
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
         panel.add(player.getTextBox());
@@ -105,21 +136,19 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     }
 
     public void disableButtons(){
-        upButton.setEnabled(false); 
-        leftButton.setEnabled(false); 
-        rightButton.setEnabled(false);    
+        upButton.setEnabled(false);
+        containerButton.setEnabled(false);
+        rightButton.setEnabled(false);
     }
 
     public void activateButtons(){
-        upButton.setEnabled(true); 
-        leftButton.setEnabled(true); 
-        rightButton.setEnabled(true);    
+        upButton.setEnabled(true);
+        containerButton.setEnabled(true);
+        rightButton.setEnabled(true);
     }
-
-
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton) moveUp();
-        if(e.getSource() == leftButton) moveLeft();
+       if(e.getSource() == containerButton) toggleContainers();
         if(e.getSource() == rightButton) moveRight();
     }
 
