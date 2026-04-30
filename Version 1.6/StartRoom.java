@@ -51,7 +51,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         add(label);
         add(upButton);
         add(player.getInventory());
-        add(player.getTextBox());
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }

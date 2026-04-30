@@ -17,7 +17,7 @@ public class Inventory extends JPanel implements ActionListener{
     
 
     Inventory(){
-        setBounds(1050,25,200,500);
+        setBounds(1050,50,200,380);
         setBackground(panelColor);
         setOpaque(true);
         setVisible(true);
@@ -26,17 +26,15 @@ public class Inventory extends JPanel implements ActionListener{
     }
 
     void create(){
-        slots = new JButton[4];
+        slots = new JButton[3];
 
-        slots[0] = new JButton("0"); //add siloutee images maybe or just darked out
-        slots[1] = new JButton("1");
-        slots[2] = new JButton("2");
-        slots[3] = new JButton("3");
+        slots[0] = new JButton();
+        slots[1] = new JButton();
+        slots[2] = new JButton();
 
         slots[0].setBounds(50,20,100,100);
         slots[1].setBounds(50,140,100,100);
         slots[2].setBounds(50,260,100,100);
-        slots[3].setBounds(50,380,100,100);
 
         for(JButton button:slots){
             button.setFocusable(false);
@@ -68,10 +66,6 @@ public class Inventory extends JPanel implements ActionListener{
         slots[2].setEnabled(true);
         slots[2].setText("C3 Note");
         hasItemTwo = true;
-    }
-
-    public static void getItemThree(){
-        slots[3].setEnabled(true);
     }
 
     public static void useItemZero(){
@@ -113,10 +107,6 @@ public class Inventory extends JPanel implements ActionListener{
 
     public static boolean hasItemTwo() {
         return hasItemTwo;
-    }
-
-    public static void useItemThree(){
-        
     }
 
     public void actionPerformed(ActionEvent e){

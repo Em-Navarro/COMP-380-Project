@@ -20,7 +20,7 @@ public class Main {
 
         //Creating Rooms here
         StartScreen startScreen = new StartScreen(layeredPane);
-        StartCutscene startCutscene = new StartCutscene(layeredPane);
+        StartCutscene startCutscene = new StartCutscene(layeredPane, player);
         StartRoom startRoom = new StartRoom(layeredPane, player);
 
         A1 a1 = new A1(layeredPane, player);
