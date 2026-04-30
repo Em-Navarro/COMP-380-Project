@@ -51,6 +51,13 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
     public void moveLeft() {}
     public void moveRight() {}
 
+        public void disableButtons(){ 
+    }
+
+    public void activateButtons(){  
+    }
+
+
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == testButton){
             moveUp();

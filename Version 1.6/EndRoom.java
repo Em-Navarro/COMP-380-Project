@@ -30,5 +30,11 @@ public class EndRoom extends JPanel implements RoomBuilder {
     public void moveLeft(){}
     public void moveRight(){}
 
+    public void disableButtons(){}
+
+    public void activateButtons(){   
+    }
+
+
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right){}
 }

@@ -6,6 +6,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
 
     JLabel label;
     JLabel note;
@@ -36,7 +37,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         ImageIcon noteIcon = new ImageIcon("Background Images/Item_Note_200x200.png");
         note = new JLabel();
         note.setIcon(noteIcon);
-        note.setBounds(100,100,500,500);
+        note.setBounds(50,450,200,200);
         note.setVisible(true);
         note.addMouseListener(this);
 
@@ -53,7 +54,17 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         setComponentZOrder(background, getComponentCount() - 1);
     }
 
-    public void showRoom(){ setVisible(true); }
+    public void showRoom(){
+        setVisible(true); 
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("B3 Text", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
+    }
     public void hideRoom(){ setVisible(false); }
 
     public String getRoom() {
@@ -78,6 +89,15 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void disableButtons(){
+        leftButton.setEnabled(false); 
+    }
+
+    public void activateButtons(){
+        leftButton.setEnabled(true);    
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == leftButton) moveLeft();

@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    boolean visited = false;
 
     JLabel backgroundLabel;
     JButton restartButton;
@@ -38,6 +39,11 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
 
     public void showRoom() {
         setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("Monster Room Text", () ->  activateButtons());
+            visited = true;
+        }
     }
 
     public void hideRoom() {
@@ -57,6 +63,13 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
     public void moveDown() {}
     public void moveLeft() {}
     public void moveRight() {}
+
+    public void disableButtons(){ 
+    }
+
+    public void activateButtons(){   
+    }
+
 
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
         links = new RoomBuilder[]{up, down, left, right};

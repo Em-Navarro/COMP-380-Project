@@ -13,6 +13,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
 
     JLabel label;
     JButton upButton;
@@ -57,6 +58,14 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
     public void showRoom() {
         setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("Start Room Text", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
     }
 
     public void hideRoom() {
@@ -71,9 +80,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         Main.switchRooms(layeredPane, links[0], this);
         Player.changeCurrentLocation(links[0].getRoom());
         addPlayerComponents((JPanel)links[0]);
-
-        //add logic to this where if player leaves and comes back using this button, it doesnt play again
-        TextBox.writeToTextBox("Testing TextBox and I am going to talk a lot because I want to make sure that the wrapping still works even though its formatted differently");
     }
 
     public void moveLeft() {
@@ -91,6 +97,15 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void disableButtons(){
+        upButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        upButton.setEnabled(true);  
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton){

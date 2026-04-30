@@ -7,6 +7,7 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
     static B2 instance;
     static boolean gateUnlocked = false;
 
@@ -111,7 +112,17 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         instance.repaint();
     }
 
-    public void showRoom(){ setVisible(true); }
+    public void showRoom(){
+        setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("B2 Text", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        } 
+    }
     public void hideRoom(){ setVisible(false); }
 
     public String getRoom() {
@@ -156,6 +167,18 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
+    }
+
+    public void disableButtons(){
+        downButton.setEnabled(false); 
+        leftButton.setEnabled(false); 
+        rightButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        downButton.setEnabled(true); 
+        leftButton.setEnabled(true); 
+        rightButton.setEnabled(true);    
     }
 
     public void actionPerformed(ActionEvent e) {

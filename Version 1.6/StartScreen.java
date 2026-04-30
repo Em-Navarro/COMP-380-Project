@@ -12,6 +12,7 @@ import java.awt.Image;
 public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
+    
 
     JLabel title;
     JLabel background;
@@ -74,6 +75,13 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
      public String getRoom() {
         return null;
      }
+
+    public void disableButtons(){   
+    }
+
+    public void activateButtons(){  
+    }
+
 
     @Override
      public void actionPerformed(ActionEvent e) {

@@ -14,6 +14,7 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
 
     JLabel label;
     JButton downButton;
@@ -62,6 +63,14 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
 
     public void showRoom() {
         setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("A1 Text", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
     }
 
     public void hideRoom() {
@@ -96,6 +105,17 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void disableButtons(){
+        downButton.setEnabled(false); 
+        rightButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        downButton.setEnabled(true); 
+        rightButton.setEnabled(true);    
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == downButton){

@@ -13,6 +13,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
     static A2 instance;
     static boolean gateUnlocked = false;
 
@@ -103,6 +104,14 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
     public void showRoom() {
         setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("A2 Text", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
     }
 
     public void hideRoom() {
@@ -134,8 +143,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
     public void moveDown() {
         if(links[1] != null){
             Main.switchRooms(layeredPane, links[1], this);
-            Player.changeCurrentLocation(links[1].getRoom());
-            addPlayerComponents((JPanel)links[1]);
+            addPlayerTextBox((JPanel)links[1]);
         }
     }
 
@@ -145,6 +153,24 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void addPlayerTextBox(JPanel panel){
+        panel.add(player.getTextBox());
+        panel.setComponentZOrder(player.getTextBox(), 0);
+    }
+
+    public void disableButtons(){ 
+        downButton.setEnabled(false); 
+        leftButton.setEnabled(false); 
+        rightButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        downButton.setEnabled(true); 
+        leftButton.setEnabled(true); 
+        rightButton.setEnabled(true);    
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton){

@@ -239,6 +239,12 @@ super.paint(g);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
     
+    public void disableButtons(){   
+    }
+
+    public void activateButtons(){  
+    }
+
 
     
     public void actionPerformed(ActionEvent e) {

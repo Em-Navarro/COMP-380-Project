@@ -6,6 +6,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
 
     JLabel label;
     JButton upButton,leftButton, rightButton;
@@ -56,7 +57,17 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         setComponentZOrder(background, getComponentCount() - 1);
     }
 
-    public void showRoom(){ setVisible(true); }
+    public void showRoom(){
+        setVisible(true); 
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("B1 Text", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
+    }
     public void hideRoom(){ setVisible(false); }
 
     public String getRoom() {
@@ -92,6 +103,19 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void disableButtons(){
+        upButton.setEnabled(false); 
+        leftButton.setEnabled(false); 
+        rightButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        upButton.setEnabled(true); 
+        leftButton.setEnabled(true); 
+        rightButton.setEnabled(true);    
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton) moveUp();
