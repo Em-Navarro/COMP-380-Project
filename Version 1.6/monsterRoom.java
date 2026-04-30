@@ -41,7 +41,7 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("Monster Room Text", () ->  activateButtons());
+            TextBox.writeToTextBox("You ventured into the darkness, ready to face anything that came your way as long as it meant saving the princess. Unfortunately, you were not nearly as ready as you thought that you were. You don't even stand a chance.", () ->  activateButtons());
             visited = true;
         }
     }

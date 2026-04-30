@@ -35,8 +35,8 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         add(background);
 
         label = new JLabel("B2");
-        label.setBounds(500,300,300,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,100));
+        //label.setBounds(500,300,300,100);
+        //label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
@@ -116,7 +116,7 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("B2 Text", () ->  activateButtons());
+            TextBox.writeToTextBox('"' + "They come out at night without being called. They are lost in the day without being stolen.What are they?" + '"' + " What is that supposed to mean?", () ->  activateButtons());
             visited = true;
         }
         else{

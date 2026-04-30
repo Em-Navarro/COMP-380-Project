@@ -35,8 +35,8 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         add(background);
 
         label = new JLabel("C2");
-        label.setBounds(500,300,300,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,70));
+        //label.setBounds(500,300,300,100);
+        //label.setFont(new Font("MV Boli",Font.PLAIN,70));
 
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
@@ -90,7 +90,7 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("C2 Text", () ->  activateButtons());
+            TextBox.writeToTextBox("You have to be kidding me. This has to be the last one, right?", () ->  activateButtons());
             visited = true;
         }
         else{

@@ -35,8 +35,8 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         add(background);
 
         label = new JLabel("B1");
-        label.setBounds(500,300,300,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,70));
+        //label.setBounds(500,300,300,100);
+        //label.setFont(new Font("MV Boli",Font.PLAIN,70)); 
 
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
@@ -69,7 +69,7 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
 
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("B1 Text", () ->  activateButtons());
+            TextBox.writeToTextBox("Another gate? And some kind of puzzle...wonder what will happen if I fill it to the line...?", () ->  activateButtons());
             visited = true;
         }
         else{

@@ -31,8 +31,8 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         add(background);
 
         label = new JLabel("C3");
-        label.setBounds(500,300,300,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,80));
+        //label.setBounds(500,300,300,100);
+        //label.setFont(new Font("MV Boli",Font.PLAIN,80));
 
         ImageIcon noteIcon = new ImageIcon("Background Images/Item_Note_200x200.png");
         note = new JLabel();
@@ -58,7 +58,7 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("C3 Text", () ->  activateButtons());
+            TextBox.writeToTextBox("Any hints in here? Maybe?", () ->  activateButtons());
             visited = true;
         }
         else{
