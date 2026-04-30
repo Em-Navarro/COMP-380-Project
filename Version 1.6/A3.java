@@ -67,7 +67,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("A3 Text", () ->  activateButtons());
+            TextBox.writeToTextBox("Hmmm...is there something that could help...?", () ->  activateButtons());
             visited = true;
         }
         else{

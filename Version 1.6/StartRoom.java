@@ -59,7 +59,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("Start Room Text", () ->  activateButtons());
+            TextBox.writeToTextBox("Finally here...looks really dangerous. Do I really wanna do this?", () ->  activateButtons());
             visited = true;
         }
         else{

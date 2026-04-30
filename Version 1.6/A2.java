@@ -106,7 +106,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
         setVisible(true);
         if(!visited){
             disableButtons();
-            TextBox.writeToTextBox("A2 Text", () ->  activateButtons());
+            TextBox.writeToTextBox("And of course it's locked...just my luck. Couldn't make things easy, huh? Maybe if I look around...", () ->  activateButtons());
             visited = true;
         }
         else{
