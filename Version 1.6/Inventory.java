@@ -73,7 +73,7 @@ public class Inventory extends JPanel implements ActionListener{
          return;
       if (!"A2".equals(Player.getCurrentLocation())) 
          return;
-   
+
       A2.unlockGateWithKey();
       hasKeyItem = false;
       slots[0].setText("Used");
@@ -83,6 +83,9 @@ public class Inventory extends JPanel implements ActionListener{
    public static void useItemOne(){
       if (!hasItemOne) 
          return;
+
+      //once mouselistenr works, make this only write the hint
+
       if ("B2".equals(Player.getCurrentLocation())) {
          B2.tryUnlockGateWithCodePrompt();
       }
@@ -112,21 +115,8 @@ public class Inventory extends JPanel implements ActionListener{
       return hasItemTwo;
    }
 
-<<<<<<< HEAD
-    public static void useItemOne(){
-        if (!hasItemOne) return;
-        if ("B2".equals(Player.getCurrentLocation())) {
-            B2.tryUnlockGateWithCodePrompt();
-        }
-    }
-
-    public static void markItemOneUsed(){
-        hasItemOne = false;
-        slots[1].setText("Used");
-        slots[1].setEnabled(false);
-    }
-
-    public static void useItemTwo(){
+   /*
+   public static void useItemTwo(){
         if (!hasItemTwo) return;
         if ("C2".equals(Player.getCurrentLocation())) {
             //C2.unlockGateWithNote();
@@ -139,10 +129,7 @@ public class Inventory extends JPanel implements ActionListener{
             B2.tryUnlockGateWithCodePrompt();
         }
     }
-
-    public static boolean hasItemTwo() {
-        return hasItemTwo;
-    }
+    */
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == slots[0]) {
@@ -154,16 +141,4 @@ public class Inventory extends JPanel implements ActionListener{
         }
     }
     
-=======
-   public void actionPerformed(ActionEvent e){
-      if (e.getSource() == slots[0]) {
-         useItemZero();
-      } else if (e.getSource() == slots[1]) {
-         useItemOne();
-      } else if (e.getSource() == slots[2]) {
-         useItemTwo();
-      }
-   }
-   
->>>>>>> 9f337d99b1761b598bb39397ec9014c32088661a
 }
