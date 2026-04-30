@@ -100,13 +100,6 @@ public class Inventory extends JPanel implements ActionListener{
    public static void useItemTwo(){
       if (!hasItemTwo) 
          return;
-      if ("C2".equals(Player.getCurrentLocation())) {
-         C2.unlockGateWithNote();
-         hasItemTwo = false;
-         slots[2].setText("Used");
-         slots[2].setEnabled(false);
-         return;
-      }
       if ("B2".equals(Player.getCurrentLocation())) {
          B2.tryUnlockGateWithCodePrompt();
       }
@@ -119,6 +112,49 @@ public class Inventory extends JPanel implements ActionListener{
       return hasItemTwo;
    }
 
+<<<<<<< HEAD
+    public static void useItemOne(){
+        if (!hasItemOne) return;
+        if ("B2".equals(Player.getCurrentLocation())) {
+            B2.tryUnlockGateWithCodePrompt();
+        }
+    }
+
+    public static void markItemOneUsed(){
+        hasItemOne = false;
+        slots[1].setText("Used");
+        slots[1].setEnabled(false);
+    }
+
+    public static void useItemTwo(){
+        if (!hasItemTwo) return;
+        if ("C2".equals(Player.getCurrentLocation())) {
+            //C2.unlockGateWithNote();
+            hasItemTwo = false;
+            slots[2].setText("Used");
+            slots[2].setEnabled(false);
+            return;
+        }
+        if ("B2".equals(Player.getCurrentLocation())) {
+            B2.tryUnlockGateWithCodePrompt();
+        }
+    }
+
+    public static boolean hasItemTwo() {
+        return hasItemTwo;
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource() == slots[0]) {
+            useItemZero();
+        } else if (e.getSource() == slots[1]) {
+            useItemOne();
+        } else if (e.getSource() == slots[2]) {
+            useItemTwo();
+        }
+    }
+    
+=======
    public void actionPerformed(ActionEvent e){
       if (e.getSource() == slots[0]) {
          useItemZero();
@@ -129,4 +165,5 @@ public class Inventory extends JPanel implements ActionListener{
       }
    }
    
+>>>>>>> 9f337d99b1761b598bb39397ec9014c32088661a
 }
