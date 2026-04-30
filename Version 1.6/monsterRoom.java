@@ -8,7 +8,7 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
     boolean visited = false;
 
     JLabel backgroundLabel;
-    JButton restartButton;
+    JButton endButton;
 
     public monsterRoom(JLayeredPane x) {
         setBounds(0, 0, 1300, 1000);
@@ -26,14 +26,14 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
         backgroundLabel = new JLabel(roomImage);
         backgroundLabel.setBounds(0, 0, 1300, 1000);
 
-        restartButton = new JButton("Restart game");
-        restartButton.setBounds(555, 445, 160, 30);
-        restartButton.setFont(new Font("Arial", Font.BOLD, 20));
-        restartButton.setFocusable(false);
-        restartButton.addActionListener(this);
+        endButton = new JButton("Game Over");
+        endButton.setBounds(925,520,200,50);
+        endButton.setFont(new Font("Arial", Font.BOLD, 20));
+        endButton.setFocusable(false);
+        endButton.addActionListener(this);
 
         add(backgroundLabel);
-        add(restartButton);
+        add(endButton);
         setComponentZOrder(backgroundLabel, getComponentCount() - 1);
     }
 
@@ -80,7 +80,7 @@ public class monsterRoom extends JPanel implements ActionListener, RoomBuilder {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == restartButton) {
+        if (e.getSource() == endButton) {
             System.exit(0);
             //restartGame();
         }

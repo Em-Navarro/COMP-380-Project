@@ -1,19 +1,19 @@
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
 
 public class Inventory extends JPanel implements ActionListener{
     static JButton[] slots;
     static boolean hasKeyItem = false;
     static boolean hasItemOne = false;
     static boolean hasItemTwo = false;
-    Color panelColor = Color.decode("#18230F");
-    Color borderColor = Color.decode("#27391C");
-    Color buttonColor = Color.decode("#1F7D53");
-    Color buttonBorderColor = Color.decode("#255F38");
+    Color panelColor = Color.decode("#2f3123");
+    Color borderColor = Color.decode("#56584b");
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
     
 
     Inventory(){

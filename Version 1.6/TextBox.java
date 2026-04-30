@@ -11,8 +11,8 @@ import java.util.TimerTask;
 
 
 public class TextBox extends JPanel{
-    Color panelColor = Color.decode("#18230F");
-    Color borderColor = Color.decode("#27391C");
+    Color panelColor = Color.decode("#2f3123");
+    Color borderColor = Color.decode("#56584b");
     static JLabel label;
     static boolean isTyping;
 
