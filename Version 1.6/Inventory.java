@@ -94,7 +94,7 @@ public class Inventory extends JPanel implements ActionListener{
     public static void useItemTwo(){
         if (!hasItemTwo) return;
         if ("C2".equals(Player.getCurrentLocation())) {
-            C2.unlockGateWithNote();
+            //C2.unlockGateWithNote();
             hasItemTwo = false;
             slots[2].setText("Used");
             slots[2].setEnabled(false);

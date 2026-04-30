@@ -13,7 +13,9 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
 
     JLabel background;
     JLabel label;
-    JButton upButton, downButton, rightButton;
+    JButton upButton, downButton, rightButton, keypadButton;
+    static Keypad keypad;
+
 
     public C2(JLayeredPane x, Player y) {
         setBounds(0,0,1300,1000);
@@ -22,6 +24,8 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         layeredPane = x;
         player = y;
         instance = this;
+        keypad = new Keypad(this);
+        keypad.create();
     }
 
     public void create() {
@@ -33,10 +37,6 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         background = new JLabel(roomImage);
         background.setBounds(0, 0, 1300, 1000);
         add(background);
-
-        label = new JLabel("C2");
-        //label.setBounds(500,300,300,100);
-        //label.setFont(new Font("MV Boli",Font.PLAIN,70));
 
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
@@ -53,20 +53,28 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         rightButton.setBounds(850,250,60,60);
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
 
+        keypadButton = new JButton("?");
+        keypadButton.setBounds(195, 365, 60, 60);
+        keypadButton.setFont(new Font("Arial", Font.BOLD, 20));
+
+
 
         upButton.addActionListener(this);
         downButton.addActionListener(this);
         rightButton.addActionListener(this);
+        keypadButton.addActionListener(this);
 
-        add(label);
+        
         add(upButton);
         add(downButton);
         add(rightButton);
+        add(keypadButton);
+        add(keypad);
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }
 
-    static void unlockGateWithNote() {
+     void unlockGate() {
         if (gateUnlocked) return;
         gateUnlocked = true;
         if (instance == null) return;
@@ -86,8 +94,8 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         instance.repaint();
     }
 
-    public void showRoom(){
-        setVisible(true);
+    public void showRoom(){ 
+     setVisible(true);
         if(!visited){
             disableButtons();
             TextBox.writeToTextBox("You have to be kidding me. This has to be the last one, right?", () ->  activateButtons());
@@ -96,7 +104,8 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         else{
           TextBox.writeToTextBox(" ", null);  
         } 
-    }
+     }
+    
     public void hideRoom(){ setVisible(false); }
 
     public String getRoom() {
@@ -129,13 +138,24 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
 
     public void moveLeft() {}
 
+
+    public void toggleKeypad (){
+        if (keypad.isVisible()){
+            keypad.setVisible(false);
+            activateButtons();
+        }
+        else{
+            keypad.setVisible(true);
+            disableButtons();
+        }
+    }
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
         panel.add(player.getTextBox());
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
-
+    
     public void disableButtons(){
         downButton.setEnabled(false); 
         rightButton.setEnabled(false);    
@@ -146,11 +166,12 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         rightButton.setEnabled(true);    
     }
 
-
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton) moveUp();
         if(e.getSource() == downButton) moveDown();
         if(e.getSource() == rightButton) moveRight();
+
+        if(e.getSource() == keypadButton) toggleKeypad();
     }
 
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
