@@ -87,7 +87,7 @@ public class Inventory extends JPanel implements ActionListener{
       //once mouselistenr works, make this only write the hint
 
       if ("B2".equals(Player.getCurrentLocation())) {
-         B2.tryUnlockGateWithCodePrompt();
+        // B2.tryUnlockGateWithCodePrompt();
       }
       else { 
          TextBox.writeToTextBox("When one falls, your wish may come true.", null);
@@ -111,7 +111,7 @@ public class Inventory extends JPanel implements ActionListener{
          return;
       }
       if ("B2".equals(Player.getCurrentLocation())) {
-         B2.tryUnlockGateWithCodePrompt();
+       //  B2.tryUnlockGateWithCodePrompt();
       }
       else {
          TextBox.writeToTextBox("Hey, I'm getting tired of constantly having to remember what the code is.Can't you just make it easy for me to remember or something? At this point even writing it on the wall would make more sense.", null);
