@@ -68,7 +68,7 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
     public void showRoom() {
         setVisible(true);
         disableButtons();
-        TextBox.writeToTextBox("Scene 1", () -> activateButtons());
+        TextBox.writeToTextBox("The King had called for you, the bravest knight in the land.", () -> activateButtons());
         setComponentZOrder(player.getTextBox(), 2);
         setComponentZOrder(button, 1);
     }
@@ -115,14 +115,14 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
         if(e.getSource() == button){
             if(count == 1){
                 disableButtons();
-                TextBox.writeToTextBox("Scene 2", () -> activateButtons());
+                TextBox.writeToTextBox("The princess had been kidnapped by a dragon, and it was up to you to rescue her.", () -> activateButtons());
                 background.setIcon(scene2);
                 count++;
                 background.repaint();
             }
             else if(count == 2){
                 disableButtons();
-                TextBox.writeToTextBox("Scene 3", () -> activateButtons());
+                TextBox.writeToTextBox("Your journey was long, but you are finally here. Now you simply have to find the princess.", () -> activateButtons());
                 count++;
                 background.setIcon(scene3);
                 background.repaint();
