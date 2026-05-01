@@ -34,7 +34,7 @@ public class Main {
         C2 c2 = new C2(layeredPane, player);
         C3 c3 = new C3(layeredPane, player);
 
-        EndRoom endRoom = new EndRoom(layeredPane);
+        EndRoom endRoom = new EndRoom(layeredPane, player);
         monsterRoom monsterRoom = new monsterRoom(layeredPane);
 
         startScreen.create();
