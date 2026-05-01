@@ -16,7 +16,7 @@ public class Keypad extends JPanel implements ActionListener {
    
 
     Keypad(C2 room){
-        setBounds(500, 100, 300,450);
+        setBounds(10, 100, 300,450);
         setBackground(Color.darkGray);
         
         setVisible(false);

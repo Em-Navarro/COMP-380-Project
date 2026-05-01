@@ -142,15 +142,11 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder,MouseListe
     public void toggleKeypad (){
         if (keypad.isVisible()){
             keypad.setVisible(false);
-            downButton.setVisible(true);
-            upButton.setVisible(true);
-            rightButton.setVisible(true);
+            
         }
         else{
             keypad.setVisible(true);
-            downButton.setVisible(false);
-            upButton.setVisible(false);
-            rightButton.setVisible(false);
+          
                     }
     }
     public void addPlayerComponents(JPanel panel){
