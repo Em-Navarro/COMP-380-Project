@@ -21,6 +21,7 @@ public class TextBox extends JPanel{
     Color borderColor = Color.decode("#56584b");
     static JLabel label;
     static boolean isTyping;
+    static boolean isTypingOnCutscene;
 
 
     TextBox(){
@@ -39,12 +40,12 @@ public class TextBox extends JPanel{
         //could also use <html>Long<br>String</html> to add a break in the middle
 
         isTyping = false;
+        isTypingOnCutscene = false;
 
         add(label);
     }
 
     static void writeToTextBox(String str, Runnable method){
-
         if(isTyping){
             return;
         }
@@ -73,7 +74,38 @@ public class TextBox extends JPanel{
                 }
             }
         };
-        
+        timer.scheduleAtFixedRate(task,0,50);   
+    }
+    static void writeToTextBoxForCutScene(JLabel cLabel, String str, Runnable method){
+        if(isTypingOnCutscene){
+            return;
+        }
+        isTypingOnCutscene = true;
+
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask(){
+
+            StringBuilder currString = new StringBuilder();
+            char[] c = str.toCharArray();
+            int count = 0;
+
+            @Override
+            public void run(){
+                try{
+                    currString.append(c[count]);
+                    count++;
+                    cLabel.setText("<html><body style='width: 675px; padding: 5px;'>" + currString + "</html>");
+                    cLabel.repaint();
+                    cLabel.validate();
+                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                    if(method != null){
+                        method.run();
+                    }
+                    isTypingOnCutscene = false;
+                    return;
+                }
+            }
+        };
         timer.scheduleAtFixedRate(task,0,50);   
     }
 }

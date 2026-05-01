@@ -50,6 +50,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         add(label);
         add(upButton);
         add(player.getInventory());
+        add(player.getTextBox());
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
     }
@@ -57,7 +58,9 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     public void showRoom() {
         setVisible(true);
         if(!visited){
+            //add(player.getTextBox());
             disableButtons();
+            setComponentZOrder(player.getTextBox(),1);
             TextBox.writeToTextBox("Finally here...looks really dangerous. Do I really wanna do this?", () ->  activateButtons());
             visited = true;
         }

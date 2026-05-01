@@ -78,6 +78,7 @@ public class Main {
 
         // Start
         startScreen.getLinks(startCutscene, null, null, null);
+        //startScreen.getLinks(startRoom, null, null, null);
 
         //Room for cutscene images
         startCutscene.getLinks(startRoom,null,null,null);
