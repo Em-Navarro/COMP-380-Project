@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class C2 extends JPanel implements ActionListener, RoomBuilder {
+public class C2 extends JPanel implements ActionListener, RoomBuilder,MouseListener {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
@@ -12,8 +12,8 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     static boolean gateUnlocked = false;
 
     JLabel background;
-    JLabel label;
-    JButton upButton, downButton, rightButton, keypadButton;
+    JLabel puzzle;
+    JButton upButton, downButton, rightButton;
     static Keypad keypad;
 
 
@@ -53,22 +53,22 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         rightButton.setBounds(850,250,60,60);
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
 
-        keypadButton = new JButton("?");
-        keypadButton.setBounds(195, 365, 60, 60);
-        keypadButton.setFont(new Font("Arial", Font.BOLD, 20));
+        
+        puzzle = new JLabel();
+        puzzle.setBounds(270,170,180,200);
+        puzzle.setVisible(true);
+        puzzle.addMouseListener(this);
 
 
 
         upButton.addActionListener(this);
         downButton.addActionListener(this);
         rightButton.addActionListener(this);
-        keypadButton.addActionListener(this);
-
-        
+                
         add(upButton);
         add(downButton);
         add(rightButton);
-        add(keypadButton);
+        add(puzzle);
         add(keypad);
         // force background behind everything
         setComponentZOrder(background, getComponentCount() - 1);
@@ -142,12 +142,16 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
     public void toggleKeypad (){
         if (keypad.isVisible()){
             keypad.setVisible(false);
-            activateButtons();
+            downButton.setVisible(true);
+            upButton.setVisible(true);
+            rightButton.setVisible(true);
         }
         else{
             keypad.setVisible(true);
-            disableButtons();
-        }
+            downButton.setVisible(false);
+            upButton.setVisible(false);
+            rightButton.setVisible(false);
+                    }
     }
     public void addPlayerComponents(JPanel panel){
         panel.add(player.getInventory());
@@ -171,8 +175,32 @@ public class C2 extends JPanel implements ActionListener, RoomBuilder {
         if(e.getSource() == downButton) moveDown();
         if(e.getSource() == rightButton) moveRight();
 
-        if(e.getSource() == keypadButton) toggleKeypad();
-    }
+            }
+
+   @Override
+   public void mouseClicked(MouseEvent e) {
+     toggleKeypad();
+   }
+    @Override
+   public void mousePressed(MouseEvent e) {
+    //only the pressing down
+   }
+   @Override
+   public void mouseReleased(MouseEvent e) {
+    //only the release
+   }
+   @Override
+   public void mouseEntered(MouseEvent e) {
+    //when mouse goes inside the object with listener
+   }
+   @Override
+   public void mouseExited(MouseEvent e) {
+    //when mouse leaves the object with listener
+   }  
+
+
+
+
 
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
         links = new RoomBuilder[]{up, down, left, right};

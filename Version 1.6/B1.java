@@ -2,13 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class B1 extends JPanel implements ActionListener, RoomBuilder {
+public class B1 extends JPanel implements ActionListener, RoomBuilder,MouseListener {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
     boolean visited = false;
+    boolean open = false;
 
-    JLabel label,background;
+    JLabel puzzle,background;
     JButton upButton, containerButton, rightButton;
     static B1 instance;
     static  WaterPuzzle waterPuzzle;
@@ -34,9 +35,11 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
-        label = new JLabel("B1");
-        //label.setBounds(500,300,300,100);
-        //label.setFont(new Font("MV Boli",Font.PLAIN,70)); 
+        puzzle = new JLabel();
+        puzzle.setBounds(50,150,300,200);
+        puzzle.setVisible(true);
+        puzzle.addMouseListener(this);
+
 
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
@@ -55,9 +58,10 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
 
 
-        add(label);
+        add(puzzle);
+      
         add(upButton);
-        add(containerButton);
+        
         add(rightButton);
         add(waterPuzzle);
         // force background behind everything
@@ -118,7 +122,9 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
         Image img = roomImage.getImage();
         Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
         roomImage = new ImageIcon(scaledImg);
-
+        
+        
+        open = true;
         instance.background.setIcon(roomImage);
         instance.upButton.setEnabled(true);
         instance.revalidate();
@@ -142,7 +148,8 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
     }
 
     public void activateButtons(){
-        upButton.setEnabled(true);
+        
+        if (open) upButton.setEnabled(true);
         containerButton.setEnabled(true);
         rightButton.setEnabled(true);
     }
@@ -151,6 +158,26 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder {
        if(e.getSource() == containerButton) toggleContainers();
         if(e.getSource() == rightButton) moveRight();
     }
+    @Override
+   public void mouseClicked(MouseEvent e) {
+     toggleContainers();
+   }
+    @Override
+   public void mousePressed(MouseEvent e) {
+    //only the pressing down
+   }
+   @Override
+   public void mouseReleased(MouseEvent e) {
+    //only the release
+   }
+   @Override
+   public void mouseEntered(MouseEvent e) {
+    //when mouse goes inside the object with listener
+   }
+   @Override
+   public void mouseExited(MouseEvent e) {
+    //when mouse leaves the object with listener
+   }  
 
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
         links = new RoomBuilder[]{up, down, left, right};
