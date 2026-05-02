@@ -12,14 +12,58 @@ thought your journey would end.
 
 But you are finally here. Now you simply have to find the princess.
 
-//General Dialogue
-Do you want to pick this up?
+//Room StartRoom
+Finally here...looks real dangerous. Do I really want to do this?
 
-Acquired [ITEM]!
+//Room A1
+Off to a great start, aren't we?
 
-Do you want to use [ITEM]?
+//Room A2 - GATE LOCKED
+And of course it's locked...just my luck. Couldn't make things easy, huh?
+Maybe if I look around...
 
-You cannot use that here.
+//Room A2 - GATE UNLOCKED
+There we go! Hopefully that's the last of them...
+
+//Room A3 - before KEY is grabbed
+Hmmm...is there something that could help...?
+
+//Room A3 - AFTER KEY is grabbed
+Aha! This has to be it! 
+
+//Room B1 - GATE LOCKED, WATER PUZZLE UNSOLVED
+Another gate? And some kind of puzzle? Wonder what happens if I fill it to the line...
+
+//Room B1 - GATE UNLOCKED, WATER PUZZLE SOLVED
+Finally! I wonder where this leads?
+
+//Room B2 - GATE LOCKED
+"They come out at night without being called. They are lost in the day without being stolen.
+What are they?"
+What is that supposed to mean?
+
+//Room B3 - before NOTE 1 is grabbed
+Maybe if I wish really hard, I'll find the answer...
+
+//Room B3 - AFTER NOTE 1 is grabbed
+"When one falls, your wish may come true."
+Oh! Looks like I got something after all!
+
+//Room C2 - GATE LOCKED
+You have to be kidding me. 
+This has to be the last one, right? 
+
+//Room C2 - GATE UNLOCKED
+Open at last! Princess, I'm on my way! 
+
+//Room C3 - before NOTE 2 is grabbed
+Any hints in here? Maybe?
+
+//Room C3 - AFTER NOTE 2 is grabbed
+"Hey, I'm getting tired of constantly having to remember what the code is.
+Can't you just make it easy for me to remember or something? 
+At this point even writing it on the wall would make more sense."
+HUH?
 
 //Riddle for GATE 2
 They come out at night without being called. They are lost in the day without being stolen.
