@@ -84,14 +84,15 @@ public class Inventory extends JPanel implements ActionListener{
       if (!hasItemOne) 
          return;
 
-      //once mouselistenr works, make this only write the hint
+      /*once mouselistenr works, make this only write the hint
 
       if ("B2".equals(Player.getCurrentLocation())) {
         // B2.tryUnlockGateWithCodePrompt();
       }
-      else { 
+      */
+      
          TextBox.writeToTextBox("When one falls, your wish may come true.", null);
-      }
+      
    }
 
    public static void markItemOneUsed(){
@@ -103,6 +104,7 @@ public class Inventory extends JPanel implements ActionListener{
    public static void useItemTwo(){
       if (!hasItemTwo)
          return;
+     /*
       if ("C2".equals(Player.getCurrentLocation())) {
          //C2.unlockGateWithNote();
          hasItemTwo = false;
@@ -112,10 +114,12 @@ public class Inventory extends JPanel implements ActionListener{
       }
       if ("B2".equals(Player.getCurrentLocation())) {
        //  B2.tryUnlockGateWithCodePrompt();
+       
       }
-      else {
+      */
+     
          TextBox.writeToTextBox("Hey, I'm getting tired of constantly having to remember what the code is.Can't you just make it easy for me to remember or something? At this point even writing it on the wall would make more sense.", null);
-      }
+      
    }
 
    public static boolean hasItemTwo() {
@@ -136,7 +140,7 @@ public class Inventory extends JPanel implements ActionListener{
             B2.tryUnlockGateWithCodePrompt();
         }
     }
-    */
+    */5
 
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == slots[0]) {
