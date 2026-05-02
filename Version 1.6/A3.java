@@ -15,8 +15,9 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
 
-    JLabel label;
+    
     JLabel key;
     JButton leftButton;
     A3(JLayeredPane x, Player y){
@@ -36,14 +37,12 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         JLabel background = new JLabel(roomImage);
         background.setBounds(0, 0, 1300, 1000);
 
-        label = new JLabel("A3");
-        label.setBounds(300,300,1000,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,100));
+       
 
         ImageIcon keyIcon = new ImageIcon("Background Images/Item_Key_200x200.png");
         key = new JLabel();
         key.setIcon(keyIcon);
-        key.setBounds(100,100,500,500);
+        key.setBounds(850,450,200,200);
         key.setVisible(true);
         key.addMouseListener(this);
 
@@ -53,7 +52,6 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         leftButton.setFocusable(false);
         leftButton.addActionListener(this);
 
-        add(label);
         add(key);
         add(leftButton);
         add(background);
@@ -64,6 +62,14 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
 
     public void showRoom() {
         setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("Hmmm...is there something that could help...?", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
     }
 
     public void hideRoom() {
@@ -95,6 +101,16 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void disableButtons(){
+        leftButton.setEnabled(false);  
+    }
+
+    public void activateButtons(){
+        leftButton.setEnabled(true);    
+    }
+
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == leftButton){

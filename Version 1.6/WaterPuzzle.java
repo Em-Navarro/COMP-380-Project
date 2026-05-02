@@ -38,99 +38,94 @@ import java.awt.event.*;
     }
     
     
-public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
-    JLayeredPane layeredPane;
-    RoomBuilder[] links;
-    Player player;
+public class WaterPuzzle extends JPanel implements ActionListener {
+    //JLayeredPane layeredPane;
 
-    JLabel smallOneLabel, smallTwoLabel, largeOneLabel, largeTwoLabel, largeThreeLabel, largeFourLabel;
+    //Player player;
+    static WaterPuzzle instance;
+
+    JLabel  smallOneLabel, smallTwoLabel, largeOneLabel, largeTwoLabel, largeThreeLabel, largeFourLabel;
     JButton rightButton, fillLargeButton, emptyLargeButton, transferLargeButton, fillSmallButton, emptySmallButton, transferSmallButton;
     Container smallContainer = new Container(3);
     Container largeContainer = new Container(5);
+    B1 b1;
+    boolean complete = false;
     
-    public WaterPuzzle(JLayeredPane x, Player y) {
-        setBounds(0,0,1300,1000);
+    public WaterPuzzle(B1 room) {
+        setBounds(335,75,680,450);
         setLayout(null);
+       // setOpaque(true);
         setVisible(false);
-        layeredPane = x;
-        player =y;
+        setBackground(Color.darkGray);
+       b1 =room;
     }
     
     public void create(){
     
     
-      
-        ImageIcon roomImage = new ImageIcon("src/Background Images/B1_Closed.png");
-        Image img = roomImage.getImage();
-        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
-        roomImage = new ImageIcon(scaledImg);
-        
-        
-        JLabel background = new JLabel(roomImage);
-        background.setBounds(0, 0, 1300, 1000);
-        add(background);
+
         
      
         smallOneLabel = new JLabel("1");
-        smallOneLabel. setBounds(215,315,30,30);
+        smallOneLabel. setBounds(215,260,30,30);
         smallOneLabel.setFont(new Font("MV Boli",Font.PLAIN,30));
         smallOneLabel.setForeground(Color.white);
 
         smallTwoLabel = new JLabel("2");
-        smallTwoLabel. setBounds(215,255,30,30);
+        smallTwoLabel. setBounds(215,200,30,30);
         smallTwoLabel.setFont(new Font("MV Boli",Font.PLAIN,30));
         smallTwoLabel.setForeground(Color.white);
 
         largeOneLabel = new JLabel("1");
-        largeOneLabel. setBounds(565,315,30,30);
+        largeOneLabel. setBounds(565,260,30,30);
         largeOneLabel.setFont(new Font("MV Boli",Font.PLAIN,30));
         largeOneLabel.setForeground(Color.white);
 
         largeTwoLabel = new JLabel("2");
-        largeTwoLabel. setBounds(565,255,30,30);
+        largeTwoLabel. setBounds(565,200,30,30);
         largeTwoLabel.setFont(new Font("MV Boli",Font.PLAIN,30));
         largeTwoLabel.setForeground(Color.white);
 
 
 
         largeThreeLabel = new JLabel("3");
-        largeThreeLabel. setBounds(565,195,30,30);
+        largeThreeLabel. setBounds(565,140,30,30);
         largeThreeLabel.setFont(new Font("MV Boli",Font.PLAIN,30));
         largeThreeLabel.setForeground(Color.white);
 
         largeFourLabel = new JLabel("4");
-        largeFourLabel. setBounds(565,135,30,30);
+        largeFourLabel. setBounds(565,80,30,30);
         largeFourLabel.setFont(new Font("MV Boli",Font.PLAIN,30));
         largeFourLabel.setForeground(Color.white);
 
 
 
         rightButton = new JButton("→");
-        rightButton.setBounds(850,250,60,60);
+        rightButton.setBounds(850,195,60,60);
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
         
         fillLargeButton = new JButton("Fill");
-        fillLargeButton.setBounds (370, 400, 85,85);
+        fillLargeButton.setBounds (370, 345, 85,85);
         fillLargeButton.setFont(new Font("Arial",Font.BOLD, 13));
         
         emptyLargeButton = new JButton("Empty");
-        emptyLargeButton.setBounds (470, 400, 85,85);
+        emptyLargeButton.setBounds (470, 345, 85,85);
         emptyLargeButton.setFont(new Font("Arial",Font.BOLD, 13));
         
         transferLargeButton = new JButton("Transfer");
-        transferLargeButton.setBounds (570, 400, 85,85);
+        transferLargeButton.setBounds (570, 345, 85,85);
         transferLargeButton.setFont(new Font("Arial",Font.BOLD, 13));
         
         fillSmallButton = new JButton("Fill");
-        fillSmallButton.setBounds (20, 400, 85,85);
+        fillSmallButton.setBounds (20, 345, 85,85);
         fillSmallButton.setFont(new Font("Arial",Font.BOLD, 13));
         
         emptySmallButton = new JButton("Empty");
-        emptySmallButton.setBounds (120, 400, 85,85);
+        emptySmallButton.setBounds (120, 345, 85,85);
         emptySmallButton.setFont(new Font("Arial",Font.BOLD, 13));
         
         transferSmallButton = new JButton("Transfer");
-        transferSmallButton.setBounds (220, 400, 85,85);
+        transferSmallButton.setBounds (220, 345, 85,85);
         transferSmallButton.setFont(new Font("Arial",Font.BOLD, 13));
 
 
@@ -164,8 +159,8 @@ public class WaterPuzzle extends JPanel implements ActionListener, RoomBuilder {
         add(fillSmallButton);
         add(emptySmallButton);
         add(transferSmallButton);
-        // force background behind everything
-        setComponentZOrder(background, getComponentCount() - 1);
+
+
         
         
         
@@ -187,62 +182,66 @@ super.paint(g);
      g2D.setStroke(new BasicStroke(5));
 
      //large container
-     g2D.drawRect(460, 90, 100, 300);
+     g2D.drawRect(460, 35, 100, 300);
      g2D.setPaint(Color.cyan);
-     g2D.fillRect(462,392- 60 * largeContainer.water  , 95, (60* largeContainer.water )-4 );
+     g2D.fillRect(462,337- 60 * largeContainer.water  , 95, (60* largeContainer.water )-4 );
      g2D.setPaint(Color.yellow);
-     g2D. drawLine(465,150,555, 150);
+     g2D. drawLine(465,95,555, 95);
      g2D.setPaint(Color.lightGray);
-     g2D. drawLine(465,210,555, 210);
-     g2D. drawLine(465,270,555, 270);
-     g2D. drawLine(465,330,555, 330);
+     g2D. drawLine(465,155,555, 155);
+     g2D. drawLine(465,215,555, 215);
+     g2D. drawLine(465,275,555, 275);
 
 
      //small container
      g2D.setPaint(Color.black);
-     g2D.drawRect(110, 210, 100, 180);
+     g2D.drawRect(110, 155, 100, 180);
      g2D.setPaint(Color.cyan);
-     g2D.fillRect(112,392 - 60 * smallContainer.water , 95, (60* smallContainer.water)- 4);
+     g2D.fillRect(112,337 - 60 * smallContainer.water , 95, (60* smallContainer.water)- 4);
 
      g2D.setPaint(Color.lightGray);
 
-     g2D. drawLine(114,270,206, 270);
-     g2D. drawLine(114,330,206, 330);
+     g2D. drawLine(114,215,206, 215);
+     g2D. drawLine(114,275,206, 275);
 
  }
 
 
-   public void showRoom(){ setVisible(true); }
-    public void hideRoom(){ setVisible(false); }
 
-    public String getRoom() {
-        return "BW";
-     }
 
-    public void moveUp() {}
-
-    public void moveDown() {}
-
-    public void moveLeft() {}
-
-    public void moveRight() {
-        if(links[3] != null)
-        Main.switchRooms(layeredPane, links[3], this);
-        Player.changeCurrentLocation(links[3].getRoom());
-        addPlayerComponents((JPanel)links[3]);
-    }
     
-    public void addPlayerComponents(JPanel panel){
-        panel.add(player.getInventory());
-        panel.add(player.getTextBox());
-        panel.setComponentZOrder(player.getInventory(), 0);
-        panel.setComponentZOrder(player.getTextBox(), 0);
+
+
+    public void winPuzzle(){
+        fillLargeButton.setEnabled(false);
+        emptyLargeButton.setEnabled(false);
+        transferLargeButton.setEnabled(false);
+
+        transferSmallButton.setEnabled(false);
+        complete = true;
+        b1.winPuzzle();
+
+
+
+/*
+        ImageIcon roomImage = new ImageIcon("src/Background Images/A2_open.png");
+        Image img = roomImage.getImage();
+        Image scaledImg = img.getScaledInstance(1300, 1000, Image.SCALE_SMOOTH);
+        roomImage = new ImageIcon(scaledImg);
+
+        instance.background.setIcon(roomImage);
+
+        instance.revalidate();
+        instance.repaint();
+*/
+
+
+
     }
-    
 
     
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == rightButton) moveRight();
+
         
         if(e.getSource() == fillLargeButton){
         largeContainer.fill();
@@ -261,8 +260,8 @@ super.paint(g);
 
         repaint();
         if (largeContainer.water == 4){
-        // victory condition
-        // open up path in B1
+
+        winPuzzle();
         }
         }  
         
@@ -287,16 +286,11 @@ super.paint(g);
      
         repaint();
         if (largeContainer.water == 4){
-        // victory condition
-        // open up path in B1
+        winPuzzle();
         }
         }  
 
         
            }
-    
-    
-      public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
-        links = new RoomBuilder[]{up, down, left, right};
-    }
+
 }

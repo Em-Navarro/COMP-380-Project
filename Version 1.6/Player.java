@@ -2,15 +2,12 @@ import javax.swing.JPanel;
 
 public class Player{
     static Inventory inventory;
-    //Map map;
     static TextBox textBox;
     static String currLocation; //change with
     
     Player(){
         inventory = new Inventory();
         inventory.create();
-        //map = new Map();
-        //map.create(); //would also have a getMap method to get the button/panel 
         textBox = new TextBox();
         textBox.create();
         currLocation = "SR";
@@ -20,11 +17,6 @@ public class Player{
     JPanel getInventory(){
         return inventory.getPanel();
     }
-
-    /*
-    JPanel getMap(){
-        return map.getPanel();
-    } */
 
     JPanel getTextBox(){
         return textBox;

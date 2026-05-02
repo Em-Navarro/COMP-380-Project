@@ -3,15 +3,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class B2 extends JPanel implements ActionListener, RoomBuilder {
+public class B2 extends JPanel implements ActionListener, RoomBuilder,MouseListener {
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
     static B2 instance;
     static boolean gateUnlocked = false;
 
     JLabel background;
-    JLabel label;
+   
+    JLabel codeLabel;
     JButton upButton, downButton, leftButton, rightButton;
 
     public B2(JLayeredPane x, Player y) {
@@ -33,9 +35,11 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
-        label = new JLabel("B2");
-        label.setBounds(500,300,300,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,100));
+        codeLabel = new JLabel();
+        codeLabel.setBounds(130,300,280,150);
+        codeLabel.setVisible(true);
+        codeLabel.addMouseListener(this);
+
 
         upButton = new JButton("↑");
         upButton.setBounds(600,30,60,60);
@@ -64,7 +68,8 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         leftButton.addActionListener(this);
         rightButton.addActionListener(this);
 
-        add(label);
+        
+        add(codeLabel);
         add(upButton);
         add(downButton);
         add(leftButton);
@@ -79,12 +84,12 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         if (!"B2".equals(Player.getCurrentLocation())) return;
 
         while (true) {
-            String input = JOptionPane.showInputDialog(instance, "Enter code:");
+            String input = JOptionPane.showInputDialog(instance, "They come out at night without being called. They are lost in the day without being stolen. What are they? Enter here:");
             if (input == null) return;
 
             if ("stars".equalsIgnoreCase(input.trim())) {
                 unlockGateWithNote();
-                Inventory.markItemOneUsed();
+               // Inventory.markItemOneUsed();
                 return;
             }
             JOptionPane.showMessageDialog(instance, "Incorrect code.");
@@ -111,7 +116,17 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         instance.repaint();
     }
 
-    public void showRoom(){ setVisible(true); }
+    public void showRoom(){
+        setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox('"' + "They come out at night without being called. They are lost in the day without being stolen.What are they?" + '"' + " What is that supposed to mean?", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        } 
+    }
     public void hideRoom(){ setVisible(false); }
 
     public String getRoom() {
@@ -158,12 +173,46 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder {
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
 
+    public void disableButtons(){
+        downButton.setEnabled(false); 
+        leftButton.setEnabled(false); 
+        rightButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        downButton.setEnabled(true); 
+        leftButton.setEnabled(true); 
+        rightButton.setEnabled(true);    
+    }
+
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == upButton) moveUp();
         if(e.getSource() == downButton) moveDown();
         if(e.getSource() == leftButton) moveLeft();
         if(e.getSource() == rightButton) moveRight();
     }
+    
+     @Override
+   public void mouseClicked(MouseEvent e) {
+     tryUnlockGateWithCodePrompt();
+   }
+    @Override
+   public void mousePressed(MouseEvent e) {
+    //only the pressing down
+   }
+   @Override
+   public void mouseReleased(MouseEvent e) {
+    //only the release
+   }
+   @Override
+   public void mouseEntered(MouseEvent e) {
+    //when mouse goes inside the object with listener
+   }
+   @Override
+   public void mouseExited(MouseEvent e) {
+    //when mouse leaves the object with listener
+   }  
+
 
     public void getLinks(RoomBuilder up, RoomBuilder down, RoomBuilder left, RoomBuilder right) {
         links = new RoomBuilder[]{up, down, left, right};

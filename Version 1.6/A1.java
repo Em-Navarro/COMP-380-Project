@@ -6,7 +6,6 @@ import java.awt.Color;
 import javax.swing.JButton; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
@@ -14,8 +13,9 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
     RoomBuilder[] links;
     Player player;
+    boolean visited = false;
 
-    JLabel label;
+    
     JButton downButton;
     JButton rightButton;
     A1(JLayeredPane x, Player y){
@@ -36,14 +36,10 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
-        label = new JLabel("A1");
         downButton = new JButton("↓");
         rightButton = new JButton("→");
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
         downButton.setFont(new Font("Arial", Font.BOLD, 20));
-
-        label.setBounds(300,300,1000,100);
-        label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
         downButton.setBounds(600,500,60,60);
         downButton.setFocusable(false);
@@ -53,7 +49,7 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         rightButton.setFocusable(false);
         rightButton.addActionListener(this);
 
-        add(label);
+       
         add(downButton);
         add(rightButton);
          // force background behind everything
@@ -62,6 +58,14 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
 
     public void showRoom() {
         setVisible(true);
+        if(!visited){
+            disableButtons();
+            TextBox.writeToTextBox("Off to a great start, aren't we?", () ->  activateButtons());
+            visited = true;
+        }
+        else{
+          TextBox.writeToTextBox(" ", null);  
+        }
     }
 
     public void hideRoom() {
@@ -96,6 +100,17 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         panel.setComponentZOrder(player.getInventory(), 0);
         panel.setComponentZOrder(player.getTextBox(), 0);
     }
+
+    public void disableButtons(){
+        downButton.setEnabled(false); 
+        rightButton.setEnabled(false);    
+    }
+
+    public void activateButtons(){
+        downButton.setEnabled(true); 
+        rightButton.setEnabled(true);    
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == downButton){
