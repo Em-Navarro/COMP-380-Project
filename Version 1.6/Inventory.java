@@ -126,22 +126,6 @@ public class Inventory extends JPanel implements ActionListener{
       return hasItemTwo;
    }
 
-   /*
-   public static void useItemTwo(){
-        if (!hasItemTwo) return;
-        if ("C2".equals(Player.getCurrentLocation())) {
-            //C2.unlockGateWithNote();
-            hasItemTwo = false;
-            slots[2].setText("Used");
-            slots[2].setEnabled(false);
-            return;
-        }
-        if ("B2".equals(Player.getCurrentLocation())) {
-            B2.tryUnlockGateWithCodePrompt();
-        }
-    }
-    */5
-
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == slots[0]) {
             useItemZero();
