@@ -78,7 +78,6 @@ public class Main {
 
         // Start
         startScreen.getLinks(startCutscene, null, null, null);
-        //startScreen.getLinks(startRoom, null, null, null);
 
         //Room for cutscene images
         startCutscene.getLinks(startRoom,null,null,null);
@@ -111,8 +110,9 @@ public class Main {
 
     //ROOM SWITCH METHOD
     public static void switchRooms(JLayeredPane pane, RoomBuilder next, RoomBuilder current) {
-        if (next == null) return;
-
+        if (next == null) {
+            return;
+        }
         current.hideRoom();
         next.showRoom();
     }

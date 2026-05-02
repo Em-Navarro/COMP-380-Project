@@ -40,9 +40,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         upButton = new JButton("↑");
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
 
-        //label.setBounds(300,300,1000,100);
-        //label.setFont(new Font("MV Boli",Font.PLAIN,100));
-
         upButton.setBounds(600,30,60,60);
         upButton.setFocusable(false);
         upButton.addActionListener(this);
@@ -58,7 +55,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     public void showRoom() {
         setVisible(true);
         if(!visited){
-            //add(player.getTextBox());
             disableButtons();
             setComponentZOrder(player.getTextBox(),1);
             TextBox.writeToTextBox("Finally here...looks really dangerous. Do I really wanna do this?", () ->  activateButtons());

@@ -19,7 +19,7 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
 
    JLabel label;
    JLabel background;
-   JButton upButton; //deactivate until puzzle solved
+   JButton upButton;
    JButton downButton;
    JButton leftButton;
    JButton rightButton;
@@ -52,14 +52,8 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
       upButton.setFont(new Font("Arial", Font.BOLD, 20));
       leftButton.setFont(new Font("Arial", Font.BOLD, 20));
    
-   
-   
-   
-      //label.setBounds(300,300,1000,100);
-      //label.setFont(new Font("MV Boli",Font.PLAIN,100));
-   
       upButton.setBounds(600,30,60,60);
-      upButton.setEnabled(false); //set enabled true when gate is unlocked
+      upButton.setEnabled(false);
       upButton.setFocusable(false);
       upButton.addActionListener(this);
    
@@ -103,8 +97,6 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
       instance.upButton.setEnabled(true);
       instance.revalidate();
       instance.repaint();
-      
-     
    }
 
    public void showRoom() {
