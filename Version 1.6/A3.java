@@ -17,7 +17,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     Player player;
     boolean visited = false;
 
-    JLabel label;
+    
     JLabel key;
     JButton leftButton;
     A3(JLayeredPane x, Player y){
@@ -37,7 +37,7 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         JLabel background = new JLabel(roomImage);
         background.setBounds(0, 0, 1300, 1000);
 
-        label = new JLabel("A3");
+       
 
         ImageIcon keyIcon = new ImageIcon("Background Images/Item_Key_200x200.png");
         key = new JLabel();
@@ -52,7 +52,6 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         leftButton.setFocusable(false);
         leftButton.addActionListener(this);
 
-        add(label);
         add(key);
         add(leftButton);
         add(background);

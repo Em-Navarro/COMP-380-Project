@@ -15,7 +15,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     Player player;
     boolean visited = false;
 
-    JLabel label;
     JButton upButton;
     StartRoom(JLayeredPane x, Player y){
         setBounds(0,0,1300,1000);
@@ -36,7 +35,7 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
-        label = new JLabel("Start Room");
+     
         upButton = new JButton("↑");
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
 
@@ -44,7 +43,6 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
         upButton.setFocusable(false);
         upButton.addActionListener(this);
 
-        add(label);
         add(upButton);
         add(player.getInventory());
         add(player.getTextBox());

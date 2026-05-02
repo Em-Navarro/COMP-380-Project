@@ -17,7 +17,6 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
    static A2 instance;
    static boolean gateUnlocked = false;
 
-   JLabel label;
    JLabel background;
    JButton upButton;
    JButton downButton;
@@ -42,7 +41,6 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
       background.setBounds(0, 0, 1300, 1000);
       add(background);
    
-      label = new JLabel("A2");
       upButton = new JButton("↑");
       downButton = new JButton("↓");
       leftButton = new JButton("←");
@@ -70,7 +68,6 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
       rightButton.addActionListener(this);
    
    
-      add(label);
       add(upButton);
       add(downButton);
       add(leftButton);

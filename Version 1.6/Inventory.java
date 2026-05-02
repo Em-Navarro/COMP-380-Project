@@ -58,13 +58,13 @@ public class Inventory extends JPanel implements ActionListener{
 
    public static void getItemOne(){
       slots[1].setEnabled(true);
-      slots[1].setText("B3 Note");
+      slots[1].setText("Riddle Note");
       hasItemOne = true;
    }
 
    public static void getItemTwo(){
       slots[2].setEnabled(true);
-      slots[2].setText("C3 Note");
+      slots[2].setText("Keypad Note");
       hasItemTwo = true;
    }
 

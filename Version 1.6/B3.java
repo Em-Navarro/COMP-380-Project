@@ -8,7 +8,7 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     Player player;
     boolean visited = false;
 
-    JLabel label;
+    
     JLabel note;
     JButton leftButton;
 
@@ -30,9 +30,6 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
-        label = new JLabel("B3");
-        //label.setBounds(500,300,300,100);
-        //label.setFont(new Font("MV Boli",Font.PLAIN,80));
 
         ImageIcon noteIcon = new ImageIcon("Background Images/Item_Note_200x200.png");
         note = new JLabel();
@@ -47,7 +44,6 @@ public class B3 extends JPanel implements ActionListener, RoomBuilder, MouseList
 
         leftButton.addActionListener(this);
 
-        add(label);
         add(note);
         add(leftButton);
         // force background behind everything

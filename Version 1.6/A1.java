@@ -15,7 +15,7 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
     Player player;
     boolean visited = false;
 
-    JLabel label;
+    
     JButton downButton;
     JButton rightButton;
     A1(JLayeredPane x, Player y){
@@ -36,7 +36,6 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         background.setBounds(0, 0, 1300, 1000);
         add(background);
 
-        label = new JLabel("A1");
         downButton = new JButton("↓");
         rightButton = new JButton("→");
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -50,7 +49,7 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         rightButton.setFocusable(false);
         rightButton.addActionListener(this);
 
-        add(label);
+       
         add(downButton);
         add(rightButton);
          // force background behind everything
