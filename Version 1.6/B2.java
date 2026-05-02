@@ -84,7 +84,7 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder,MouseListe
         if (!"B2".equals(Player.getCurrentLocation())) return;
 
         while (true) {
-            String input = JOptionPane.showInputDialog(instance, "Enter code:");
+            String input = JOptionPane.showInputDialog(instance, "They come out at night without being called. They are lost in the day without being stolen. What are they? Enter here:");
             if (input == null) return;
 
             if ("stars".equalsIgnoreCase(input.trim())) {
