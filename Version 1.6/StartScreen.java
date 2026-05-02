@@ -16,11 +16,9 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
     RoomBuilder[] links;
     Color buttonColor = Color.decode("#7d6b45");
     Color buttonBorderColor = Color.decode("#c4ae86");
-    
-
     JLabel title;
     JLabel background;
-    JButton startButton; // maybe drawn buttons
+    JButton startButton;
     JButton creditButton;
     ImageIcon backgroundImage;
 
@@ -43,7 +41,6 @@ public class StartScreen extends JPanel implements ActionListener, RoomBuilder{
         title.setForeground(Color.decode("#203a1e"));
         title.setFont(new Font("MV Boli",Font.PLAIN,100));
 
-        //maybe a special background
         backgroundImage = new ImageIcon("Temp_Background.png");
 		Image newImage = backgroundImage.getImage();
 		Image resizedImage = newImage.getScaledInstance(1300,1000,Image.SCALE_SMOOTH);

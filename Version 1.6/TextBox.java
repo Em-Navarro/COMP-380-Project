@@ -7,15 +7,6 @@ import java.awt.Font;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-
-/* 
-JLabel label = ...
-label.setIconmage.png);
-....
-label.setIcon(NewImage.png);
-label.repaint();
-*/
 public class TextBox extends JPanel{
     Color panelColor = Color.decode("#2f3123");
     Color borderColor = Color.decode("#56584b");

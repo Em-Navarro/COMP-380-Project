@@ -6,7 +6,6 @@ import java.awt.Color;
 import javax.swing.JButton; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
@@ -42,9 +41,6 @@ public class A1 extends JPanel implements ActionListener, RoomBuilder{
         rightButton = new JButton("→");
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
         downButton.setFont(new Font("Arial", Font.BOLD, 20));
-
-        //label.setBounds(300,300,1000,100);
-        //label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
         downButton.setBounds(600,500,60,60);
         downButton.setFocusable(false);

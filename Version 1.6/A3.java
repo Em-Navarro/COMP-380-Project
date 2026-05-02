@@ -38,8 +38,6 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         background.setBounds(0, 0, 1300, 1000);
 
         label = new JLabel("A3");
-        //label.setBounds(300,300,1000,100);
-        //label.setFont(new Font("MV Boli",Font.PLAIN,100));
 
         ImageIcon keyIcon = new ImageIcon("Background Images/Item_Key_200x200.png");
         key = new JLabel();

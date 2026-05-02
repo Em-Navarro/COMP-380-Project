@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Color;
-import java.awt.Dimension;
 
 public class StartCutscene extends JPanel implements ActionListener, RoomBuilder{
     JLayeredPane layeredPane;
@@ -119,12 +118,9 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == button){
-            if(isTyping){
-                return;
-            }
-            else if(count == 1){
+            if(count == 1){
+                if(isTyping){return;}
                 background.setIcon(scene2);
-                count++;
                 textBoxPanel.setComponentZOrder(cutSceneTextBox, 0);
                 setComponentZOrder(textBoxPanel, 1);
                 setComponentZOrder(button, 1);
@@ -132,10 +128,11 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
                 background.validate();
                 startTyping();
                 TextBox.writeToTextBoxForCutScene(cutSceneTextBox,"The princess had been kidnapped by a dragon, and it was up to you to rescue her.", () -> stopTyping());
+                count++;
             }
             else if(count == 2){
+                if(isTyping){return;}
                 background.setIcon(scene3);
-                count++;
                 textBoxPanel.setComponentZOrder(cutSceneTextBox, 0);
                 setComponentZOrder(textBoxPanel, 1);
                 setComponentZOrder(button, 1);
@@ -143,8 +140,10 @@ public class StartCutscene extends JPanel implements ActionListener, RoomBuilder
                 background.validate();
                 startTyping();
                 TextBox.writeToTextBoxForCutScene(cutSceneTextBox,"Your journey was long, but you are finally here. Now you simply have to find the princess.", () -> stopTyping());
+                count++;
             }
             else{
+                if(isTyping){return;}
                 moveUp();
             }
         }
