@@ -83,15 +83,7 @@ public class Inventory extends JPanel implements ActionListener{
    public static void useItemOne(){
       if (!hasItemOne) 
          return;
-
-      /*once mouselistenr works, make this only write the hint
-
-      if ("B2".equals(Player.getCurrentLocation())) {
-        // B2.tryUnlockGateWithCodePrompt();
-      }
-      */
-      
-         TextBox.writeToTextBox("When one falls, your wish may come true.", null);
+      TextBox.writeToTextBox("When one falls, your wish may come true.", null);
       
    }
 
