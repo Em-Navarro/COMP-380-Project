@@ -8,6 +8,8 @@ import java.awt.Color;
 import javax.swing.JButton; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
@@ -16,6 +18,8 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     RoomBuilder[] links;
     Player player;
     boolean visited = false;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
 
     
     JLabel key;
@@ -50,6 +54,8 @@ public class A3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         leftButton.setFont(new Font("Arial", Font.BOLD, 20));
         leftButton.setBounds(350,250,60,60);
         leftButton.setFocusable(false);
+        leftButton.setBackground(buttonColor);
+        leftButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
         leftButton.addActionListener(this);
 
         add(key);

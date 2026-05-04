@@ -15,13 +15,4 @@ public interface RoomBuilder {
     public void moveDown();
     public void moveLeft();
     public void moveRight();
-    //maybe add map button/inventory/textbox
-    //also maybe have switch method in here too??
 }
-
-        /* Random example for changing sizing of image i remember that could be useful	
-        xIcon = new ImageIcon("xMark.png"); //xIcon of type ImageIcon 
-		Image newX = xIcon.getImage();
-		Image croppedXImage = newX.getScaledInstance(100,100,Image.SCALE_SMOOTH);//size change here
-		xIcon = new ImageIcon(croppedXImage); 
-        */

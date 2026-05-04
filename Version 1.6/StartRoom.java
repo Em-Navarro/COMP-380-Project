@@ -6,6 +6,8 @@ import java.awt.Color;
 import javax.swing.JButton; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
@@ -14,6 +16,8 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
     RoomBuilder[] links;
     Player player;
     boolean visited = false;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
 
     JButton upButton;
     StartRoom(JLayeredPane x, Player y){
@@ -41,6 +45,8 @@ public class StartRoom extends JPanel implements ActionListener, RoomBuilder{
 
         upButton.setBounds(600,30,60,60);
         upButton.setFocusable(false);
+        upButton.setBackground(buttonColor);
+        upButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
         upButton.addActionListener(this);
 
         add(upButton);

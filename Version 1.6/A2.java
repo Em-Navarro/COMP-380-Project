@@ -6,6 +6,8 @@ import java.awt.Color;
 import javax.swing.JButton; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
@@ -16,6 +18,8 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
    boolean visited = false;
    static A2 instance;
    static boolean gateUnlocked = false;
+   Color buttonColor = Color.decode("#7d6b45");
+   Color buttonBorderColor = Color.decode("#c4ae86");
 
    JLabel background;
    JButton upButton;
@@ -53,18 +57,26 @@ public class A2 extends JPanel implements ActionListener, RoomBuilder{
       upButton.setBounds(600,30,60,60);
       upButton.setEnabled(false);
       upButton.setFocusable(false);
+      upButton.setBackground(buttonColor);
+      upButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
       upButton.addActionListener(this);
    
       downButton.setBounds(600,500,60,60);
       downButton.setFocusable(false);
+      downButton.setBackground(buttonColor);
+      downButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
       downButton.addActionListener(this);
    
       leftButton.setBounds(350,250,60,60);
       leftButton.setFocusable(false);
+      leftButton.setBackground(buttonColor);
+      leftButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
       leftButton.addActionListener(this);
    
       rightButton.setBounds(850,250,60,60);
       rightButton.setFocusable(false);
+      rightButton.setBackground(buttonColor);
+      rightButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
       rightButton.addActionListener(this);
    
    
