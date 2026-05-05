@@ -10,6 +10,8 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder,MouseListe
     boolean visited = false;
     static B2 instance;
     static boolean gateUnlocked = false;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
 
     JLabel background;
    
@@ -45,22 +47,30 @@ public class B2 extends JPanel implements ActionListener, RoomBuilder,MouseListe
         upButton.setBounds(600,30,60,60);
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
         upButton.setEnabled(false);
+        upButton.setBackground(buttonColor);
+        upButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
 
 
         downButton = new JButton("↓");
         downButton.setBounds(600,500,60,60);
         downButton.setFont(new Font("Arial", Font.BOLD, 20));
+        downButton.setBackground(buttonColor);
+        downButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
 
 
         leftButton = new JButton("←");
         leftButton.setBounds(350,250,60,60);
         leftButton.setFont(new Font("Arial", Font.BOLD, 20));
+        leftButton.setBackground(buttonColor);
+        leftButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
 
 
 
         rightButton = new JButton("→");
         rightButton.setBounds(850,250,60,60);
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
+        rightButton.setBackground(buttonColor);
+        rightButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
 
 
         upButton.addActionListener(this);

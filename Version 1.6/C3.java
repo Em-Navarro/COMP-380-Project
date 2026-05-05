@@ -7,6 +7,8 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
     RoomBuilder[] links;
     Player player;
     boolean visited = false;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
 
 
     JLabel note;
@@ -41,6 +43,8 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         leftButton.setBounds(350,250,60,60);
         leftButton.addActionListener(this);
         leftButton.setFont(new Font("Arial", Font.BOLD, 20));
+        leftButton.setBackground(buttonColor);
+        leftButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
 
 
         add(note);

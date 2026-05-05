@@ -8,6 +8,8 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder,MouseListe
     Player player;
     boolean visited = false;
     boolean open = false;
+    Color buttonColor = Color.decode("#7d6b45");
+    Color buttonBorderColor = Color.decode("#c4ae86");
 
     JLabel puzzle,background;
     JButton upButton, containerButton, rightButton;
@@ -45,6 +47,8 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder,MouseListe
         upButton.setBounds(600,30,60,60);
         upButton.addActionListener(this);
         upButton.setFont(new Font("Arial", Font.BOLD, 20));
+        upButton.setBackground(buttonColor);
+        upButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
         upButton.setEnabled(false);
 
         containerButton = new JButton("?");
@@ -55,6 +59,8 @@ public class B1 extends JPanel implements ActionListener, RoomBuilder,MouseListe
         rightButton = new JButton("→");
         rightButton.setBounds(850,250,60,60);
         rightButton.addActionListener(this);
+        rightButton.setBackground(buttonColor);
+        rightButton.setBorder(BorderFactory.createLineBorder(buttonBorderColor,10));
         rightButton.setFont(new Font("Arial", Font.BOLD, 20));
 
 
