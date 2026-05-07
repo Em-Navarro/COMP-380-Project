@@ -35,7 +35,7 @@ public class C3 extends JPanel implements ActionListener, RoomBuilder, MouseList
         ImageIcon noteIcon = new ImageIcon("Background Images/Item_Note_200x200.png");
         note = new JLabel();
         note.setIcon(noteIcon);
-        note.setBounds(500,410,200,200);
+        note.setBounds(400,410,200,200);
         note.setVisible(true);
         note.addMouseListener(this);
 
